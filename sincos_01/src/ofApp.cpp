@@ -22,6 +22,11 @@ void ofApp::setup(){
     fbo.allocate(res.x, res.y);
     ofEnableDepthTest();
     
+    snapCounter = 0;
+    bSnapshot = false;
+    
+    ofEnableSmoothing();
+    
 }
 
 //--------------------------------------------------------------
@@ -78,6 +83,18 @@ void ofApp::draw(){
     fbo.draw(0,0);
     shader.end();
     
+    
+    if (bSnapshot == true){
+        // grab a rectangle at 200,200, width and height of 300,180
+        img.grabScreen(0,0, res.x, res.y);
+        
+        string fileName = "snapshot_"+ofToString(10000+snapCounter)+".png";
+        img.save(fileName, OF_IMAGE_QUALITY_BEST);
+        snapString = "saved " + fileName;
+        snapCounter++;
+        bSnapshot = false;
+    }
+    
     if( bSave ){
         ofEndSaveScreenAsPDF();
         bSave = false;
@@ -90,6 +107,9 @@ void ofApp::keyPressed(int key){
     switch (key) {
         case 's':
             bSave=true;
+            break;
+        case 'r':
+            bSnapshot=true;
             break;
             
         default:

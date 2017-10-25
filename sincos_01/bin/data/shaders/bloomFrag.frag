@@ -14,11 +14,8 @@ void main(void)
     vec2 st = gl_TexCoord[0].st;
     
     
-    vec2 screenSpaceCoord = vec2((gl_FragCoord.x  / resolution.x  - 0.5) , (gl_FragCoord.y / resolution.y  - 0.5) * aspectRatio ) * 2.0;
+//    vec2 coord = gl_TexCoord[0].xy;
 
-    
-    
-    
     float brightPassThreshold = 0.5;
     vec3 luminanceVector = vec3(0.2125, 0.7154, 0.0721);
     
@@ -26,14 +23,11 @@ void main(void)
     float luminance =dot(luminanceVector, col.xyz);
     luminance = max(0.0, luminance - brightPassThreshold);
     col.xyz *= sign(luminance);
-    col.x += float(mouse.x);
-    col.y *= float(mouse.y);
-//    col.xyz /= vec3(mouse.x, 1.0, 0.5);
-    
-//    col.xyz -= vec3(mouse.x, 0,0);
-    
-    
-    gl_FragColor = vec4(col.xyz, 1.0);
+    col.r += float(mouse.x);
+    col.g *= float(mouse.y);
+   
+    gl_FragColor = vec4(col.rgb, 1.0);
+    gl_FragColor = texture2DRect(tex, st);
 }
 
 

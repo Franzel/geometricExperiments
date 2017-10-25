@@ -33,9 +33,18 @@ class ofApp : public ofBaseApp{
     bool bSave;
     ofColor c;
     
+    
+    
     ofVec2f res;
     ofFbo fbo;
     ofShader shader;
+    
+    int                 snapCounter;
+    string              snapString;
+    ofImage             img;
+    ofTrueTypeFont      cooper;
+    bool                bSnapshot;
+    float               phase;
     
     
 		
