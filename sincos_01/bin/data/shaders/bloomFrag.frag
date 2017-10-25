@@ -15,17 +15,7 @@ void main(void)
     
     
     vec2 screenSpaceCoord = vec2((gl_FragCoord.x  / resolution.x  - 0.5) , (gl_FragCoord.y / resolution.y  - 0.5) * aspectRatio ) * 2.0;
-    
-//    float distanceOrigin = length(screenSpaceCoord);
-//
-//    float exposure = pow(distanceOrigin, 1.0);
-//    vec3 rgb = color.xyz / exposure ;
-//
-//    st *= pow(rgb.r,0.2) ;
-//
-//
-//
-//    float a = 1.0;
+
     
     
     
@@ -36,7 +26,12 @@ void main(void)
     float luminance =dot(luminanceVector, col.xyz);
     luminance = max(0.0, luminance - brightPassThreshold);
     col.xyz *= sign(luminance);
-//    col.a = 1.0;
+    col.x += float(mouse.x);
+    col.y *= float(mouse.y);
+//    col.xyz /= vec3(mouse.x, 1.0, 0.5);
+    
+//    col.xyz -= vec3(mouse.x, 0,0);
+    
     
     gl_FragColor = vec4(col.xyz, 1.0);
 }

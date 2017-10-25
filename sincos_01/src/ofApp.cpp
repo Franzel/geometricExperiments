@@ -69,7 +69,7 @@ void ofApp::draw(){
     }
     
     shader.begin();
-    shader.setUniform2f("mouse", mouseX, mouseY);
+    shader.setUniform2f("mouse", ofMap(mouseX,0,fbo.getWidth(), 0.0, 1.0), ofMap(mouseY,0,fbo.getHeight(),0.0,1.0));
     shader.setUniform2f("resolution", res.x, res.y);
     shader.setUniform1f("time", ofGetElapsedTimef());
     shader.setUniformTexture("tex", fbo.getTexture(), 0);
