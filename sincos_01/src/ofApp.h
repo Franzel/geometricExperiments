@@ -33,5 +33,10 @@ class ofApp : public ofBaseApp{
     bool bSave;
     ofColor c;
     
+    ofVec2f res;
+    ofFbo fbo;
+    ofShader shader;
+    
+    
 		
 };

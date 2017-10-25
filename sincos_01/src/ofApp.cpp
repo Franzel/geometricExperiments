@@ -8,7 +8,10 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundColor(0, 0, 0);
-    origin.set(ofGetWindowWidth()/2, ofGetWindowHeight()/2);
+    
+    res.set(ofGetWindowWidth(), ofGetWindowHeight());
+    
+    origin.set(res.x/2, res.y/2);
     ofSetCircleResolution(60);
     
     size = 5.5;
@@ -16,7 +19,8 @@ void ofApp::setup(){
     bSave = false;
     ofSetVerticalSync(true);
     
-    
+    fbo.allocate(res.x, res.y);
+    ofEnableDepthTest();
     
 }
 
@@ -24,18 +28,13 @@ void ofApp::setup(){
 void ofApp::update(){
     angle = ofGetElapsedTimef() * 1.0;
     radius = 300;
+    shader.load("shaders/basic.vert", "shaders/bloomFrag.frag");
     
+    fbo.begin();
+    ofClear(0);
     
-}
-
-//--------------------------------------------------------------
-void ofApp::draw(){
-    if( bSave ){
-        ofBeginSaveScreenAsPDF("screenshot-"+ofGetTimestampString()+".pdf", false);
-    }
-    
-    float phase  = ofMap(mouseX, 0, ofGetWindowWidth(), 0, 1);
-    float phaseY  = ofMap(mouseY, 0, ofGetWindowHeight(), 0, 1);
+    float phase  = ofMap(mouseX, 0, res.x, 0, 1);
+    float phaseY  = ofMap(mouseY, 0, res.y, 0, 1);
     ofColor b;
     b.setHsb(255, 255, 60);
     ofBackgroundGradient(ofColor(0,0,0), b, OF_GRADIENT_CIRCULAR);
@@ -50,25 +49,35 @@ void ofApp::draw(){
                 id=i;
             }
             
-            
-            
-            
             float x = origin.x + cos(TWO_PI/nElements*i) * ((h*10)+ radius * (cos(angle+id*phase)+1)/2);
             float y = origin.y + sin(TWO_PI/nElements*i) * ((h*10)+ radius * (sin(angle+id*phase)+1)/2);
             
             float osc = (cos(id*phase)+1)/2;
             c.setHsb(80 + osc*55 , 200 + osc*100, 130+125*osc);
-
-//            ofDrawRectangle(x,y, size * osc, size * osc);
-            ofSetLineWidth(0.2);
-            ofSetColor(c * 0.7,100);
-            if(i%6==0) ofDrawLine(x,y, origin.x, origin.y);
-            
             ofSetColor(c);
             ofDrawCircle(x,y,size * osc);
             
         }
     }
+    
+    fbo.end();
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    if( bSave ){
+        ofBeginSaveScreenAsPDF("screenshot-"+ofGetTimestampString()+".pdf", false);
+    }
+    
+    shader.begin();
+    shader.setUniform2f("mouse", mouseX, mouseY);
+    shader.setUniform2f("resolution", res.x, res.y);
+    shader.setUniform1f("time", ofGetElapsedTimef());
+    shader.setUniformTexture("tex", fbo.getTexture(), 0);
+    shader.setUniform1f("mouseDown", ofGetMousePressed());
+    
+    fbo.draw(0,0);
+    shader.end();
     
     if( bSave ){
         ofEndSaveScreenAsPDF();
