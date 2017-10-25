@@ -56,7 +56,6 @@ void ofApp::update(){
             c.setHsb(80 + osc*55 , 200 + osc*100, 130+125*osc);
             ofSetColor(c);
             ofDrawCircle(x,y,size * osc);
-            
         }
     }
     
