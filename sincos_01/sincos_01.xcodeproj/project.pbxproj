@@ -42,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0BE606501FA2378500CC4EF3 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		8A6DF1911F9FF98200333792 /* array.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = array.frag; path = "../../../../../../../../../../../Volumes/FZ BODEGA/OF_Todo/084/apps/glsl_myStudy/Basic_Examples/bin/data/shaders/array.frag"; sourceTree = "<group>"; };
 		8A6DF1921F9FF98200333792 /* array_v2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = array_v2.frag; sourceTree = "<group>"; };
 		8A6DF1931FA0203E00333792 /* bloomFrag.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = bloomFrag.frag; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		8ACE43FB1F9FE17E0019C562 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				0BE606501FA2378500CC4EF3 /* test.jpg */,
 				8ACE43FD1F9FE1880019C562 /* shaders */,
 				8ACE43FC1F9FE17E0019C562 /* .gitkeep */,
 			);

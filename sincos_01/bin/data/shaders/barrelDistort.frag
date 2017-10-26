@@ -11,8 +11,8 @@ uniform vec2 mouse;
 
 void main(){
 
-//	vec2 mousectr = mouse.xy / resolution.xy;  // remap mouse to a range of 0.0,1.0
-	vec2 mousectr = vec2(0.5);  // set mouse at center
+//    vec2 mousectr = mouse.xy / resolution.xy;  // remap mouse to a range of 0.0,1.0
+    vec2 mousectr = vec2(0.5);  // set mouse at center
 
 	vec2 st = gl_TexCoord[0].st; // get this texture coordinate
 

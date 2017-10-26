@@ -26,24 +26,28 @@ void ofApp::setup(){
     bSnapshot = false;
     
     ofEnableSmoothing();
+    img.load("test.jpg");
     
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    angle = ofGetElapsedTimef() * 1.0;
+    angle = ofGetElapsedTimef() * 0.5;
     radius = 300;
     shader.load("shaders/basic.vert", "shaders/bloomFrag.frag");
+//    shader.load("shaders/basic.vert", "shaders/barrelDistort.frag");
+//    shader.load("shaders/basic.vert", "shaders/averaging.frag");
+
     
     fbo.begin();
     ofClear(0);
     
-    float phase  = ofMap(mouseX, 0, res.x, 0, 1);
-    float phaseY  = ofMap(mouseY, 0, res.y, 0, 1);
+    float phase  = ofMap(mouseX, 0, res.x, 0, 1, true);
+    float phaseY  = ofMap(mouseY, 0, res.y, 0, 1, true);
     ofColor b;
     b.setHsb(255, 255, 60);
     ofBackgroundGradient(ofColor(0,0,0), b, OF_GRADIENT_CIRCULAR);
-    
+
     ofSetColor(255);
     for(int h=0; h<1;h++){
         for(int i=0; i<nElements;i++){
@@ -53,16 +57,18 @@ void ofApp::update(){
             }else{
                 id=i;
             }
-            
+
             float x = origin.x + cos(TWO_PI/nElements*i) * ((h*10)+ radius * (cos(angle+id*phase)+1)/2);
             float y = origin.y + sin(TWO_PI/nElements*i) * ((h*10)+ radius * (sin(angle+id*phase)+1)/2);
-            
+
             float osc = (cos(id*phase)+1)/2;
             c.setHsb(80 + osc*55 , 200 + osc*100, 130+125*osc);
             ofSetColor(c);
             ofDrawCircle(x,y,size * osc);
         }
     }
+    
+//    img.draw(0, 0, res.x, res.y);
     
     fbo.end();
 }
@@ -74,12 +80,11 @@ void ofApp::draw(){
     }
     
     shader.begin();
-    shader.setUniform2f("mouse", ofMap(mouseX,0,fbo.getWidth(), 0.0, 1.0), ofMap(mouseY,0,fbo.getHeight(),0.0,1.0));
+    shader.setUniform2f("mouse", ofMap(mouseX,0,res.x, 0.0, 1.0, true), ofMap(mouseY,0,res.y,0.0,1.0,true));
     shader.setUniform2f("resolution", res.x, res.y);
     shader.setUniform1f("time", ofGetElapsedTimef());
     shader.setUniformTexture("tex", fbo.getTexture(), 0);
     shader.setUniform1f("mouseDown", ofGetMousePressed());
-    
     fbo.draw(0,0);
     shader.end();
     
