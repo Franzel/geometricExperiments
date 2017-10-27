@@ -21,30 +21,18 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    float angle;
     int nElements;
-    float speed;
-    float posX, posY;
-    float size;
-    float radius;
-    ofVec2f origin;
+    ofPoint origin;
     ofVec2f pos;
-    bool bSave;
+    vector<ofPoint> positions;
+    float radius;
+    float rad;
+    
+    float speed;
     ofColor c;
     
-    
-    
     ofVec2f res;
-    ofFbo fbo;
-    ofShader shader;
     
-    int                 snapCounter;
-    string              snapString;
-    ofImage             img;
-    ofTrueTypeFont      cooper;
-    bool                bSnapshot;
-    float               phase;
-    
-    
+
 		
 };
