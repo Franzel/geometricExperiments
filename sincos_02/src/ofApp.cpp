@@ -4,13 +4,14 @@
 void ofApp::setup(){
     ///---- GUI
     gui.setup();
-    gui.add(radX.set("SINE", 200.0, 0.0, 900));
-    gui.add(radY.set("COSINE", 200.0, 0.0, 900.0));
-    gui.add(freqParam.set("FREQ",2.0,-30.0,30.0));
+    gui.add(radX.set("RAD_X", 200.0, 0.0, 900));
+    gui.add(radY.set("RAD_Y", 200.0, 0.0, 900.0));
+    gui.add(freqParam.set("FREQ",2.00,-20.00,20.00));
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
+    gui.add(nRings.set("N_RINGS",2,1,30));
 
     ///---- INITIALIZE
-    ofSetCircleResolution(100);
+    ofSetCircleResolution(60);
     ofSetBackgroundColor(0);
     res.set(ofGetWindowWidth(), ofGetWindowHeight());
     origin.set(res/2);
@@ -30,8 +31,6 @@ void ofApp::setup(){
 
 //-------------------------------------------------------------
 void ofApp::update(){
-    
-    
     for(int i=0;i<positions.size();i++){
         int id;
         if(i>positions.size()/2){
@@ -43,7 +42,6 @@ void ofApp::update(){
         positions[i].x = origin.x + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+id)) ;
         positions[i].y = origin.y + sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+id));
     }
-    
 }
 
 //--------------------------------------------------------------
@@ -53,19 +51,28 @@ void ofApp::draw(){
     ofSetPolyMode(OF_POLY_WINDING_NONZERO);
     ofNoFill();
     
-    
-    for(int j=0;j<10;j++){
-        ofSetLineWidth(j/2);
+    ///RINGS
+    for(int j=0;j<nRings;j++){
+        ofSetLineWidth(j*0.2);
+        ofColor c;
+        c.setHsb(j*10, 255, 255);
+        ofSetColor(c);
+        
         ofBeginShape();
+
         for(int i=0;i<positions.size();i++){
-            ofDrawCircle(positions[i].x, positions[i].y, rad);
             ofVec2f diff = positions[i]-origin ;
             diff.normalize();
-            
             ofVec2f r = positions[i] + diff*j*10;
             ofVertex(r.x, r.y);
         }
         ofEndShape();
+    }
+    
+    ///DOTS
+    ofSetLineWidth(1);
+    for(int i=0;i<positions.size();i++){
+        ofDrawCircle(positions[i].x, positions[i].y, rad);
     }
 }
 
@@ -80,7 +87,6 @@ void ofApp::keyPressed(int key){
         positions.erase(positions.begin());
         cout<<positions.size()<<endl;
     }
-    
 }
 
 //--------------------------------------------------------------

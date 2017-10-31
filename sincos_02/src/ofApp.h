@@ -39,6 +39,7 @@ class ofApp : public ofBaseApp{
     ofParameter<float> radY;
     ofParameter<float> freqParam;
     ofParameter<float> ampParam;
+    ofParameter<int> nRings;
     
 
 		
