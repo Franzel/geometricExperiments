@@ -29,15 +29,16 @@ class ofApp : public ofBaseApp{
     float radius;
     ofVec2f origin;
     ofVec2f pos;
-    bool bSave;
     ofColor c;
     
     
-    
+    //Fbo
     ofVec2f res;
     ofFbo fbo;
     ofShader shader;
-    
+
+    //Export
+    bool bSave;
     int                 snapCounter;
     string              snapString;
     ofImage             img;

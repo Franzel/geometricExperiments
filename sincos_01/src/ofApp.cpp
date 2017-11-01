@@ -16,12 +16,12 @@ void ofApp::setup(){
     
     size = 5.5;
     nElements = 1280;
-    bSave = false;
     ofSetVerticalSync(true);
     
     fbo.allocate(res.x, res.y);
     ofEnableDepthTest();
-    
+
+    bSave = false;
     snapCounter = 0;
     bSnapshot = false;
     

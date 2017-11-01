@@ -76,6 +76,18 @@ void ofApp::draw(){
     for(int i=0;i<positions.size();i++){
         ofDrawCircle(positions[i].x, positions[i].y, rad);
     }
+    
+    ///CAPTURE
+    if (bSnapshot == true){
+        // grab a rectangle at 200,200, width and height of 300,180
+        img.grabScreen(0,0, res.x, res.y);
+        
+        string fileName = "snapshot_"+ofToString(10000+snapCounter)+".png";
+        img.save(fileName, OF_IMAGE_QUALITY_BEST);
+        snapString = "saved " + fileName;
+        snapCounter++;
+        bSnapshot = false;
+    }
 }
 
 //--------------------------------------------------------------
@@ -89,6 +101,18 @@ void ofApp::keyPressed(int key){
     if(key==OF_KEY_DOWN){
         positions.erase(positions.begin());
         cout<<positions.size()<<endl;
+    }
+    
+    switch (key) {
+        case 's':
+            bSave=true;
+            break;
+        case 'm':
+            bSnapshot=!bSnapshot;
+            break;
+            
+        default:
+            break;
     }
     
 }

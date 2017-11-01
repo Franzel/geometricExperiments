@@ -42,6 +42,16 @@ class ofApp : public ofBaseApp{
     ofParameter<int> nRings;
     ofParameter<float> gap;
     
+    
+    //Export
+    bool bSave;
+    int                 snapCounter;
+    string              snapString;
+    ofImage             img;
+    ofTrueTypeFont      cooper;
+    bool                bSnapshot;
+    float               phase;
+    
 
 		
 };
