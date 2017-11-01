@@ -45,13 +45,13 @@ void ofApp::update(){
     float phase  = ofMap(mouseX, 0, res.x, 0, 1, true);
     float phaseY  = ofMap(mouseY, 0, res.y, 0, 1, true);
     ofColor b;
-    b.setHsb(255, 255, 60);
+    b.setHsb(125, 255, 60);
     ofBackgroundGradient(ofColor(0,0,0), b, OF_GRADIENT_CIRCULAR);
 
     ofSetColor(255);
     for(int h=0; h<1;h++){
         for(int i=0; i<nElements;i++){
-            float id;
+            float id;// = i;
             if(i>nElements/2){
                 id = nElements-i;
             }else{
@@ -62,7 +62,7 @@ void ofApp::update(){
             float y = origin.y + sin(TWO_PI/nElements*i) * ((h*10)+ radius * (sin(angle+id*phase)+1)/2);
 
             float osc = (cos(id*phase)+1)/2;
-            c.setHsb(80 + osc*55 , 200 + osc*100, 130+125*osc);
+            c.setHsb(80 + osc*60 , 220 + osc*100, 150+125*osc);
             ofSetColor(c);
             ofDrawCircle(x,y,size * osc);
         }
@@ -79,14 +79,14 @@ void ofApp::draw(){
         ofBeginSaveScreenAsPDF("screenshot-"+ofGetTimestampString()+".pdf", false);
     }
     
-    shader.begin();
-    shader.setUniform2f("mouse", ofMap(mouseX,0,res.x, 0.0, 1.0, true), ofMap(mouseY,0,res.y,0.0,1.0,true));
+//    shader.begin();
+    shader.setUniform2f("mouse", ofMap(mouseX,0,res.x, 0.0, 1.0), ofMap(mouseY,0,res.y,0.0,1.0));
     shader.setUniform2f("resolution", res.x, res.y);
     shader.setUniform1f("time", ofGetElapsedTimef());
     shader.setUniformTexture("tex", fbo.getTexture(), 0);
     shader.setUniform1f("mouseDown", ofGetMousePressed());
     fbo.draw(0,0);
-    shader.end();
+//    shader.end();
     
     
     if (bSnapshot == true){
@@ -110,13 +110,14 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key) {
-        case 's':
-            bSave=true;
-            break;
-        case 'r':
-            bSnapshot=true;
-            break;
-            
+    case 's':
+        bSave=true;
+        break;
+    case 'r':
+        bSnapshot=true;
+        cout<<bSnapshot<<endl;
+        break;
+        
         default:
             break;
     }
