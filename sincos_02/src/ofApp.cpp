@@ -8,14 +8,15 @@ void ofApp::setup(){
     gui.add(radY.set("RAD_Y", 200.0, 0.0, 900.0));
     gui.add(freqParam.set("FREQ",2.00,-20.00,20.00));
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
-    gui.add(nRings.set("N_RINGS",2,1,30));
+    gui.add(nRings.set("N_RINGS",30,1,60));
+    gui.add(gap.set("GAP",10,-10,60));
 
     ///---- INITIALIZE
     ofSetCircleResolution(60);
     ofSetBackgroundColor(0);
     res.set(ofGetWindowWidth(), ofGetWindowHeight());
     origin.set(res/2);
-    radius = 300;
+    radius = 100;
     nElements = 30;
     rad = 2;
    
@@ -32,12 +33,12 @@ void ofApp::setup(){
 //-------------------------------------------------------------
 void ofApp::update(){
     for(int i=0;i<positions.size();i++){
-        int id;
-        if(i>positions.size()/2){
-            id = positions.size()-i;
-        }else{
-            id=i;
-        }
+        int id = i;
+//        if(i>positions.size()/2){
+//            id = positions.size()-i;
+//        }else{
+//            id=i;
+//        }
         float tempAngle = (TWO_PI / positions.size()) * i;
         positions[i].x = origin.x + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+id)) ;
         positions[i].y = origin.y + sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+id));
@@ -46,6 +47,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofBackgroundGradient(ofColor::darkCyan, ofColor::black, OF_GRADIENT_CIRCULAR);
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
     gui.draw();
     ofSetPolyMode(OF_POLY_WINDING_NONZERO);
@@ -55,7 +57,7 @@ void ofApp::draw(){
     for(int j=0;j<nRings;j++){
         ofSetLineWidth(j*0.2);
         ofColor c;
-        c.setHsb(j*10, 255, 255);
+        c.setHsb(j*2*gap, 255, 255);
         ofSetColor(c);
         
         ofBeginShape();
@@ -63,7 +65,7 @@ void ofApp::draw(){
         for(int i=0;i<positions.size();i++){
             ofVec2f diff = positions[i]-origin ;
             diff.normalize();
-            ofVec2f r = positions[i] + diff*j*10;
+            ofVec2f r = positions[i] + diff*j*gap;
             ofVertex(r.x, r.y);
         }
         ofEndShape();
@@ -81,12 +83,14 @@ void ofApp::keyPressed(int key){
     if(key==OF_KEY_UP){
         ofVec2f temp;
         positions.push_back(temp);
+        cout<<positions.size()<<endl;
     }
     
     if(key==OF_KEY_DOWN){
         positions.erase(positions.begin());
         cout<<positions.size()<<endl;
     }
+    
 }
 
 //--------------------------------------------------------------

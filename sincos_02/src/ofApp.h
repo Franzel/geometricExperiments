@@ -40,6 +40,7 @@ class ofApp : public ofBaseApp{
     ofParameter<float> freqParam;
     ofParameter<float> ampParam;
     ofParameter<int> nRings;
+    ofParameter<float> gap;
     
 
 		
