@@ -10,6 +10,7 @@ void ofApp::setup(){
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
     gui.add(nRings.set("N_RINGS",30,1,60));
     gui.add(gap.set("GAP",10,-10,60));
+    gui.add(thickness.set("THICKNESS",1.0,0.1,10.0));
 
     ///---- INITIALIZE
     ofSetCircleResolution(60);
@@ -55,9 +56,9 @@ void ofApp::draw(){
     
     ///RINGS
     for(int j=0;j<nRings;j++){
-        ofSetLineWidth(j*0.2);
+        ofSetLineWidth(j*thickness);
         ofColor c;
-        c.setHsb(j*2*gap, 255, 255);
+        c.setHsb(j*gap, 255, 255);
         ofSetColor(c);
         
         ofBeginShape();
@@ -72,7 +73,7 @@ void ofApp::draw(){
     }
     
     ///DOTS
-    ofSetLineWidth(1);
+    ofSetLineWidth(1.0);
     for(int i=0;i<positions.size();i++){
         ofDrawCircle(positions[i].x, positions[i].y, rad);
     }

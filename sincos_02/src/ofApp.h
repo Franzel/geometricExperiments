@@ -41,6 +41,7 @@ class ofApp : public ofBaseApp{
     ofParameter<float> ampParam;
     ofParameter<int> nRings;
     ofParameter<float> gap;
+    ofParameter<float> thickness;
     
     
     //Export
