@@ -42,6 +42,7 @@ class ofApp : public ofBaseApp{
     ofParameter<int> nRings;
     ofParameter<float> gap;
     ofParameter<float> thickness;
+    ofParameter<int> nDivisions;
     
     
     //Export

@@ -11,6 +11,7 @@ void ofApp::setup(){
     gui.add(nRings.set("N_RINGS",30,1,60));
     gui.add(gap.set("GAP",10,-10,60));
     gui.add(thickness.set("THICKNESS",1.0,0.01,5.00));
+    gui.add(nDivisions.set("N_DIVISIONS",44,1,87));
     gui.loadFromFile("settings.xml");
 
     ///---- INITIALIZE
@@ -19,10 +20,10 @@ void ofApp::setup(){
     res.set(ofGetWindowWidth(), ofGetWindowHeight());
     origin.set(res/2);
     radius = 100;
-    nElements = 30;
     rad = 2;
-   
-    for(int i=0;i<nElements;i++){
+    nDivisions = 44; //must delete this after gui param is implemented
+    
+    for(int i=0;i<nDivisions;i++){
         float tempAngle = (TWO_PI / nElements) * i;
         float x = origin.x + cos(tempAngle) * radius;
         float y = origin.y + sin(tempAngle) * radius;
@@ -49,26 +50,35 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackgroundGradient(ofColor::darkCyan, ofColor::black, OF_GRADIENT_CIRCULAR);
+    ofBackgroundGradient(ofColor::black, ofColor(0,40,50), OF_GRADIENT_CIRCULAR);
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
-    gui.draw();
+
+    ///RINGS
     ofSetPolyMode(OF_POLY_WINDING_NONZERO);
     ofNoFill();
-    
-    ///RINGS
     for(int j=0;j<nRings;j++){
         ofColor c;
-        c.setHsb(j*gap, 255, 255);
-        ofSetColor(c);
+
         ofSetLineWidth(thickness*j);
+        
         ofBeginShape();
         for(int i=0;i<positions.size();i++){
             ofVec2f diff = positions[i]-origin ;
             diff.normalize();
-            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.5)*(radX*0.01));
+            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
             ofVertex(r.x, r.y);
+            
         }
+        
+        ofVec2f currRadius = positions[0] - origin;
+        currRadius.normalize();
+        
+        
+        c.setHsb((currRadius.x*15*j), 255, 255);
+        ofSetColor(c);
         ofEndShape();
+
+        
     }
 
     ///DOTS
@@ -88,6 +98,10 @@ void ofApp::draw(){
         snapCounter++;
         bSnapshot = false;
     }
+    
+    ///GUI
+    gui.draw();
+
 }
 
 //--------------------------------------------------------------
