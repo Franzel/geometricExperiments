@@ -10,7 +10,8 @@ void ofApp::setup(){
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
     gui.add(nRings.set("N_RINGS",30,1,60));
     gui.add(gap.set("GAP",10,-10,60));
-    gui.add(thickness.set("THICKNESS",1.0,0.1,10.0));
+    gui.add(thickness.set("THICKNESS",1.0,0.01,5.00));
+    gui.loadFromFile("settings.xml");
 
     ///---- INITIALIZE
     ofSetCircleResolution(60);
@@ -56,22 +57,20 @@ void ofApp::draw(){
     
     ///RINGS
     for(int j=0;j<nRings;j++){
-        ofSetLineWidth(j*thickness);
         ofColor c;
         c.setHsb(j*gap, 255, 255);
         ofSetColor(c);
-        
+        ofSetLineWidth(thickness*j);
         ofBeginShape();
-
         for(int i=0;i<positions.size();i++){
             ofVec2f diff = positions[i]-origin ;
             diff.normalize();
-            ofVec2f r = positions[i] + diff*j*gap;
+            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.5)*(radX*0.01));
             ofVertex(r.x, r.y);
         }
         ofEndShape();
     }
-    
+
     ///DOTS
     ofSetLineWidth(1.0);
     for(int i=0;i<positions.size();i++){
