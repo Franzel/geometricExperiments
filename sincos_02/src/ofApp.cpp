@@ -60,25 +60,25 @@ void ofApp::draw(){
         ofColor c;
 
         ofSetLineWidth(thickness*j);
-        
+
         ofBeginShape();
         for(int i=0;i<positions.size();i++){
             ofVec2f diff = positions[i]-origin ;
             diff.normalize();
             ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
             ofVertex(r.x, r.y);
-            
+
         }
-        
+
         ofVec2f currRadius = positions[0] - origin;
         currRadius.normalize();
-        
-        
+
+
         c.setHsb((currRadius.x*15*j), 255, 255);
         ofSetColor(c);
         ofEndShape();
 
-        
+
     }
 
     ///DOTS
