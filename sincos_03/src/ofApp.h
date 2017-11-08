@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -20,5 +21,39 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    
+    int nElements;
+    ofPoint origin;
+    ofVec2f pos;
+    vector<ofPoint> positions;
+    float radius;
+    float rad;
+    
+    float speed;
+    ofColor c;
+    
+    ofVec2f res;
+    
+    ofxPanel gui;
+    ofParameter<float> radX;
+    ofParameter<float> radY;
+    ofParameter<float> freqParam;
+    ofParameter<float> ampParam;
+    ofParameter<int> nRings;
+    ofParameter<float> gap;
+    ofParameter<float> thickness;
+    ofParameter<int> nDivisions;
+    
+    
+    //Export
+    bool bSave;
+    int                 snapCounter;
+    string              snapString;
+    ofImage             img;
+    ofTrueTypeFont      cooper;
+    bool                bSnapshot;
+    float               phase;
+    
+
 		
 };
