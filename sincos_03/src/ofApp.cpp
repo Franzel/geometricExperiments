@@ -21,24 +21,32 @@ void ofApp::setup(){
     origin.set(res/2);
     radius = 100;
     rad = 2;
-    nDivisions = 44; //must delete this after gui param is implemented
+    nDivisions = 10; //must delete this after gui param is implemented
+    float gap = 100;
     
     for(int i=0;i<nDivisions;i++){
-        float tempAngle = (TWO_PI / nElements) * i;
-        float x = origin.x + cos(tempAngle) * radius;
-        float y = origin.y + sin(tempAngle) * radius;
-        ofVec2f temp;
-        temp.set(x,y);
-        positions.push_back(temp);
+        for(int j=0;j<nDivisions;j++){
+            float tempAngle = (TWO_PI / nElements) * i;
+            float x = i*gap;
+            float y = j*gap;
+            ofVec2f temp;
+            temp.set(x,y);
+            positions.push_back(temp);
+        }
     }
 }
 
 //-------------------------------------------------------------
 void ofApp::update(){
-    for(int i=0;i<positions.size();i++){
-        float tempAngle = (TWO_PI / positions.size()) * i;
-        positions[i].x = origin.x + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+i)) ;
-        positions[i].y = origin.y + sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+i));
+    for(int i=0;i<nDivisions;i++){
+        for(int j=0;j<nDivisions;j++){
+            float tempAngle = (TWO_PI / positions.size()) * i;
+//            positions[i].x = i*gap + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+i)) ;
+//            positions[i].y = j*gap + sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+i));
+            positions[i].x = i*gap;
+            positions[i].y = j*gap;
+        
+        }
     }
 }
 
@@ -49,19 +57,21 @@ void ofApp::draw(){
 
     ///RINGS
 
-    for(int j=0;j<nRings;j++){
+    for(int j=0;j<15;j++){
         ofColor c;
         c.setHsb((10*j), 255, 255);
         ofSetColor(c);
         for(int i=0;i<positions.size();i++){
-            ofVec2f diff = positions[i]-origin ;
+            ofVec2f diff = positions[i]-ofVec2f(mouseX,mouseY) ;
             diff.normalize();
 //            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
-            ofVec2f r = positions[i] + diff*j*gap;
-            ofDrawCircle(r, 1);
+            
+            
             float cycle = sin(ofGetElapsedTimef()*freqParam);
-
-            ofDrawLine(r, r+ diff.getRotated(i*cycle*j) *(10+j));
+            
+            ofVec2f r = positions[i] + diff*j*(cycle+1)/2*gap;
+            ofDrawCircle(r, 10-j);
+            ofDrawLine(r, r + diff.getRotated(cycle) * (2*ampParam*j));
         }
 
         ofVec2f currRadius = positions[0] - origin;
@@ -69,11 +79,11 @@ void ofApp::draw(){
 
     }
 
-    ///DOTS
-    ofSetLineWidth(1.0);
-    for(int i=0;i<positions.size();i++){
-        ofDrawCircle(positions[i].x, positions[i].y, rad);
-    }
+//    ///DOTS
+//    ofSetLineWidth(1.0);
+//    for(int i=0;i<positions.size();i++){
+//        ofDrawCircle(positions[i].x, positions[i].y, rad);
+//    }
     
     ///CAPTURE
     if (bSnapshot == true){
