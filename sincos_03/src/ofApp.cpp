@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetWindowPosition(0, 0);
     ///---- GUI
     gui.setup();
     gui.add(radX.set("RAD_X", 200.0, 0.0, 900));
@@ -9,82 +10,71 @@ void ofApp::setup(){
     gui.add(freqParam.set("FREQ",2.00,-20.00,20.00));
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
     gui.add(nRings.set("N_RINGS",30,1,60));
-    gui.add(gap.set("GAP",10,-10,60));
-    gui.add(thickness.set("THICKNESS",1.0,0.01,5.00));
+    gui.add(gap.set("GAP",30,-10,100));
+    gui.add(thickness.set("THICKNESS",5,0.01,10.00));
     gui.add(nDivisions.set("N_DIVISIONS",44,1,87));
     gui.loadFromFile("settings.xml");
 
     ///---- INITIALIZE
+    
     ofSetCircleResolution(60);
     ofSetBackgroundColor(0);
     res.set(ofGetWindowWidth(), ofGetWindowHeight());
-    origin.set(res/2);
+    origin.set(0,0);
     radius = 100;
     rad = 2;
-    nDivisions = 10; //must delete this after gui param is implemented
-    float gap = 100;
+    nRows = 20; //must delete this after gui param is implemented
+    nCols = 20; //must delete this after gui param is implemented
+
+//    float gap = 100;
     
-    for(int i=0;i<nDivisions;i++){
-        for(int j=0;j<nDivisions;j++){
-            float tempAngle = (TWO_PI / nElements) * i;
-            float x = i*gap;
-            float y = j*gap;
+    for(int i=0;i<nRows;i++){
+        for(int j=0;j<nCols;j++){
+            float x = 0;
+            float y = 0;
             ofVec2f temp;
             temp.set(x,y);
             positions.push_back(temp);
         }
     }
+    cout<<positions.size()<<endl;
 }
 
 //-------------------------------------------------------------
 void ofApp::update(){
-    for(int i=0;i<nDivisions;i++){
-        for(int j=0;j<nDivisions;j++){
-            float tempAngle = (TWO_PI / positions.size()) * i;
+    for(int i=0;i<nRows;i++){
+        for(int j=0;j<nCols;j++){
+//            float tempAngle = (TWO_PI / positions.size()) * i;
 //            positions[i].x = i*gap + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+i)) ;
 //            positions[i].y = j*gap + sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+i));
-            positions[i].x = i*gap;
-            positions[i].y = j*gap;
-        
+            positions[j*nRows+i].set(origin.x+i*gap, origin.y+j*gap);
         }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackgroundGradient(ofColor::black, ofColor(0,40,50), OF_GRADIENT_CIRCULAR);
+    ofBackgroundGradient(ofColor(0), ofColor(0,40,50), OF_GRADIENT_CIRCULAR);
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
 
-    ///RINGS
-
-    for(int j=0;j<15;j++){
-        ofColor c;
-        c.setHsb((10*j), 255, 255);
-        ofSetColor(c);
-        for(int i=0;i<positions.size();i++){
-            ofVec2f diff = positions[i]-ofVec2f(mouseX,mouseY) ;
+   
+    float cycle = 1+sin(ofGetElapsedTimef()*freqParam)/2;
+    int nIter = 30;
+    
+    for (int i=0;i<nIter;i++){
+        for (int j=0;j<positions.size();j++){
+            ofColor c;
+            c.setHsb(i*360/nIter, 255, 255);
+            ofSetColor(c);
+            ofVec2f diff = positions[j]-ofVec2f(mouseX,mouseY) ;
             diff.normalize();
-//            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
-            
-            
-            float cycle = sin(ofGetElapsedTimef()*freqParam);
-            
-            ofVec2f r = positions[i] + diff*j*(cycle+1)/2*gap;
-            ofDrawCircle(r, 10-j);
-            ofDrawLine(r, r + diff.getRotated(cycle) * (2*ampParam*j));
+            ofVec2f r = positions[j] + diff*j/gap;
+            ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
+//            ofDrawLine(r, r + diff.getRotated(0) * (ampParam*cycle)*i);
         }
-
-        ofVec2f currRadius = positions[0] - origin;
-        currRadius.normalize();
-
     }
 
-//    ///DOTS
-//    ofSetLineWidth(1.0);
-//    for(int i=0;i<positions.size();i++){
-//        ofDrawCircle(positions[i].x, positions[i].y, rad);
-//    }
-    
+   
     ///CAPTURE
     if (bSnapshot == true){
         // grab a rectangle at 200,200, width and height of 300,180
@@ -121,6 +111,13 @@ void ofApp::keyPressed(int key){
             break;
         case 'm':
             bSnapshot=!bSnapshot;
+            break;
+            
+        case 'p':
+            cout<<"gap:"<<gap<<endl;
+            for (int i=0;i<positions.size();i++){
+                cout<< i << " : " << positions[i]<<endl ;
+            }
             break;
             
         default:

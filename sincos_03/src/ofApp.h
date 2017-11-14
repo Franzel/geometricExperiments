@@ -22,10 +22,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    int nElements;
+    int nRows,nCols;
     ofPoint origin;
     ofVec2f pos;
     vector<ofPoint> positions;
+    
+    
     float radius;
     float rad;
     
