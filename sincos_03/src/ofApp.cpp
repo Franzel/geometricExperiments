@@ -59,22 +59,27 @@ void ofApp::draw(){
 
    
     float cycle = 1+sin(ofGetElapsedTimef()*freqParam)/2;
-    int nIter = 30;
+    int nIter = 3;
+    
+    ofVec2f center;
+    center.x = ofGetWindowWidth()/2 + cos(ofGetElapsedTimef()) * 200;
+    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()) * 200;
+
     
     for (int i=0;i<nIter;i++){
         for (int j=0;j<positions.size();j++){
             ofColor c;
             c.setHsb(i*360/nIter, 255, 255);
             ofSetColor(c);
-            ofVec2f diff = positions[j]-ofVec2f(mouseX,mouseY) ;
+            ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
             diff.normalize();
             ofVec2f r = positions[j] + diff*j/gap;
             ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
-//            ofDrawLine(r, r + diff.getRotated(0) * (ampParam*cycle)*i);
+            ofDrawLine(r, r + diff.getRotated(0) * (ampParam*cycle)*i);
         }
     }
 
-   
+    ofDrawCircle(center, 10);
     ///CAPTURE
     if (bSnapshot == true){
         // grab a rectangle at 200,200, width and height of 300,180
