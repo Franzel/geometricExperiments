@@ -23,8 +23,8 @@ void ofApp::setup(){
     origin.set(0,0);
     radius = 100;
     rad = 2;
-    nRows = 40; //must delete this after gui param is implemented
-    nCols = 40; //must delete this after gui param is implemented
+    nRows = 20; //must delete this after gui param is implemented
+    nCols = 20; //must delete this after gui param is implemented
 
 //    float gap = 100;
     
