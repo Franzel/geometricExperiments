@@ -10,8 +10,8 @@ void ofApp::setup(){
     gui.add(freqParam.set("FREQ",2.00,-5.00,5.00));
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
     gui.add(nRings.set("N_RINGS",30,1,60));
-    gui.add(gap.set("GAP",30,-10,100));
-    gui.add(thickness.set("THICKNESS",5,0.01,10.00));
+    gui.add(gap.set("GAP",30,-10,400));
+    gui.add(thickness.set("THICKNESS",5,0.0,55.00));
     gui.add(nDivisions.set("N_DIVISIONS",44,1,87));
     gui.loadFromFile("settings.xml");
 
@@ -62,9 +62,11 @@ void ofApp::draw(){
     int nIter = nDivisions;
     
     ofVec2f center;
-    center.x = ofGetWindowWidth()/2 + cos(ofGetElapsedTimef()*freqParam) * radX;
-    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()*freqParam) * radY;
-//    center.set(mouseX,mouseY);
+//    center.x = ofGetWindowWidth()/2 + cos(ofGetElapsedTimef()*freqParam) * radX;
+//    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()*freqParam) * radY;
+    center.set(mouseX,mouseY);
+//    center.x = ofGetWindowWidth()/2;
+//    center.y = ofGetWindowHeight()/2;
 
     
     for (int i=0;i<nIter;i++){
@@ -74,7 +76,9 @@ void ofApp::draw(){
             ofSetColor(c);
             ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
             diff.normalize();
-            ofVec2f r = positions[j] + diff*j/gap;
+            
+            
+            ofVec2f r = positions[j] + diff*j* ((sin(ofGetElapsedTimef()+j)+1/2)*diff*ampParam)/gap;
 //            r.x += cos(ofGetElapsedTimef()+i)  *8;
 //            r.y += sin(ofGetElapsedTimef()+i)  *8;
 
