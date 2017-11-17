@@ -23,8 +23,8 @@ void ofApp::setup(){
     origin.set(0,0);
     radius = 100;
     rad = 2;
-    nRows = 40; //must delete this after gui param is implemented
-    nCols = 40; //must delete this after gui param is implemented
+    nRows = 12; //must delete this after gui param is implemented
+    nCols = 12; //must delete this after gui param is implemented
 
 //    float gap = 100;
     
@@ -42,12 +42,22 @@ void ofApp::setup(){
 
 //-------------------------------------------------------------
 void ofApp::update(){
-    for(int i=0;i<nRows;i++){
-        for(int j=0;j<nCols;j++){
+//    for(int i=0;i<nRows;i++){
+//        for(int j=0;j<nCols;j++){
 //            float tempAngle = (TWO_PI / positions.size()) * i;
-//            positions[i].x = i*gap + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+i)) ;
-//            positions[i].y = j*gap + sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+i));
-            positions[j*nRows+i].set(origin.x+i*gap, origin.y+j*gap);
+//            positions[i].x = ofGetWindowWidth()/2 + cos(tempAngle) * (radX + ampParam * sin(freqParam *ofGetElapsedTimef()+i)) ;
+//            positions[i].y = ofGetWindowHeight()/2+ sin(tempAngle) * (radY + ampParam * sin(freqParam *ofGetElapsedTimef()+i));
+////            positions[j*nRows+i].set(origin.x+i*gap, origin.y+j*gap);
+//        }
+//    }
+    int nIter = 3;
+    for(int i=0;i<nIter;i++){
+        for (int j=0;j<positions.size();j++){
+
+            float tempAngle = (TWO_PI / positions.size()) * j;
+            positions[j].x = ofGetWindowWidth()/2 + cos(tempAngle) * (radX + 50*i + ampParam );
+            positions[j].y = ofGetWindowHeight()/2+ sin(tempAngle) * (radY + 50*i + ampParam );
+            //            positions[j*nRows+i].set(origin.x+i*gap, origin.y+j*gap);
         }
     }
 }
@@ -62,28 +72,53 @@ void ofApp::draw(){
     int nIter = nDivisions;
     
     ofVec2f center;
-    center.x = ofGetWindowWidth()/2 + cos(ofGetElapsedTimef()*freqParam) * radX;
-    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()*freqParam) * radY;
+    center.x = ofGetWindowWidth()/2 + cos(ofGetElapsedTimef()*freqParam) * radX/2;
+    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()*freqParam) * radY/2;
 //    center.set(mouseX,mouseY);
+//    center.x = ofGetWindowWidth()/2;
+//    center.y = ofGetWindowHeight()/2;
+    
 
     
+//    for (int i=0;i<nIter;i++){
+//        for (int j=0;j<positions.size();j++){
+//            ofColor c;
+//            c.setHsb(i*(240*cycle+0.1)/nIter, 255, 255);
+//            ofSetColor(c);
+//            ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
+//            diff.normalize();
+//            ofVec2f r = positions[j] + diff*j/gap;
+//            r.x += cos(ofGetElapsedTimef()+i)  *8;
+//            r.y += sin(ofGetElapsedTimef()+i)  *8;
+//
+//            ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
+//        }
+//    }
+    for (int a=0;a<10;a++){
+
     for (int i=0;i<nIter;i++){
         for (int j=0;j<positions.size();j++){
             ofColor c;
             c.setHsb(i*(240*cycle+0.1)/nIter, 255, 255);
             ofSetColor(c);
+            
             ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
             diff.normalize();
-            ofVec2f r = positions[j] + diff*j/gap;
-//            r.x += cos(ofGetElapsedTimef()+i)  *8;
-//            r.y += sin(ofGetElapsedTimef()+i)  *8;
-
-            ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
-//            ofDrawLine(r, r + diff.getRotated(0) * (ampParam*cycle)*i);
+            ofVec2f r = positions[j] + diff*i*ampParam;
+//            r.x += cos(ofGetElapsedTimef()+i)  *2;
+//            r.y += sin(ofGetElapsedTimef()+i)  *2;
+            
+                        r.x += diff.x*gap*a;
+                        r.y += diff.y*gap*a;
+            
+            
+//            ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
+            ofDrawCircle(r, thickness-i*thickness/nIter);
+//            ofDrawCircle(positions[j], thickness-i*thickness/nIter);
         }
     }
+    }
 
-//    ofDrawCircle(center, 10);
     ///CAPTURE
     if (bSnapshot == true){
         // grab a rectangle at 200,200, width and height of 300,180
