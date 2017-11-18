@@ -41,10 +41,12 @@ class ofApp : public ofBaseApp{
     ofParameter<float> radY;
     ofParameter<float> freqParam;
     ofParameter<float> ampParam;
-    ofParameter<int> nRings;
+    ofParameter<float> waveSpeed;
     ofParameter<float> gap;
     ofParameter<float> thickness;
     ofParameter<int> nDivisions;
+    
+    bool bMouse;
     
     
     //Export
