@@ -77,10 +77,12 @@ void ofApp::draw(){
             ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
             diff.normalize();
             
+            float distToCenter = positions[i].distance(center);
             
-            ofVec2f r = positions[j] + diff*j* ((sin(ofGetElapsedTimef()+j)+1/2)*diff*ampParam)/gap;
-//            r.x += cos(ofGetElapsedTimef()+i)  *8;
-//            r.y += sin(ofGetElapsedTimef()+i)  *8;
+            
+            ofVec2f r = positions[j] + diff*j* ((sin(ofGetElapsedTimef()+distToCenter)+1/2)*diff*ampParam*3)/gap;
+//            r.x += cos(ofGetElapsedTimef() * cos(distToCenter) * freqParam) *10 ;
+//            r.y += sin(ofGetElapsedTimef()  * sin(distToCenter) * freqParam) *10;
 
             ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
 //            ofDrawLine(r, r + diff.getRotated(0) * (ampParam*cycle)*i);
