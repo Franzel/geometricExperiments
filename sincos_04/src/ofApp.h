@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,5 +25,18 @@ class ofApp : public ofBaseApp{
     ofVec3f center;
     ofEasyCam   cam;
     ofLight light;
+    
+    
+    ofxPanel gui;
+    ofParameter<float> maxRadX;
+    ofParameter<float> maxRadY;
+    ofParameter<float> freq;
+    ofParameter<float> amp;
+    ofParameter<float> speed;
+    
+    ofParameter<float> gap;
+    ofParameter<float> thickness;
+    ofParameter<int> nRings;
+    ofParameter<int> nElements;
 		
 };

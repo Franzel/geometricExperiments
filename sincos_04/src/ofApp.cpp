@@ -2,6 +2,21 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+    
+    ///---- GUI
+    gui.setup();
+    gui.add(maxRadX.set("RAD_X", 200.0, 0.0, 900));
+    gui.add(maxRadY.set("RAD_Y", 200.0, 0.0, 900.0));
+    gui.add(freq.set("FREQ",0.8,-2.00,2.00));
+    gui.add(amp.set("AMP",10.0,-30.0,30.0));
+    gui.add(speed.set("WAVE_SPEED",2.5,-5.0,5.0));
+    gui.add(nRings.set("nRINGS",36,1,64));
+    gui.add(nElements.set("nELEMENTS",180,2,400));
+    //gui.loadFromFile("settings.xml");
+    gui.setTextColor(ofColor(255));
+    
+    ///---- INITIALIZE
     center.set(ofGetWindowWidth()/2, ofGetWindowHeight()/2);
     center.set(0,0);
     
@@ -9,6 +24,16 @@ void ofApp::setup(){
     ofSetCircleResolution(100);
     light.setPointLight();
     ofEnableDepthTest();
+    
+    
+    
+//    maxRadX = 300;
+//    maxRadY = 300;
+//    amp = 10;
+//    freq = 0.8;
+//    speed = 2.5;
+//    nRings = 36;
+//    nElements = 180;
 }
 
 //--------------------------------------------------------------
@@ -20,23 +45,16 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
+    gui.draw();
     cam.begin();
-    float maxRadius = 300;
-    int nRings = 36;
-    float nElements = 180;
-    
-    float amp = 10;
-    float freq = 0.8;
-    float speed = 2.5;
     float time = ofGetElapsedTimef();
     
     for (int i=0; i<nRings ; i++){
         float angle = HALF_PI + PI/nRings * i;
         
-        
         //Set position in X and Y
-        float x = center.x + cos(angle) * maxRadius;
-        float y = center.y + sin(angle) * maxRadius + sin(i*0.5+time)*10;
+        float x = center.x + cos(angle) * maxRadX;
+        float y = center.y + sin(angle) * maxRadY + sin(i*0.5+time)*10;
         
         float ringRadius = ofDist(center.x, center.y+y, x, center.y+y);
         
@@ -76,6 +94,7 @@ void ofApp::draw(){
         }
     }
     cam.end();
+    
 
 
 }
