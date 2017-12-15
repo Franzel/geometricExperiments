@@ -7,10 +7,10 @@ void ofApp::setup(){
     
     ///---- GUI
     gui.setup();
-    gui.add(maxRadX.set("RAD_X", 200.0, 0.0, 900));
-    gui.add(maxRadY.set("RAD_Y", 200.0, 0.0, 900.0));
+    gui.add(maxRadX.set("RAD_X", 300.0, 0.0, 900));
+    gui.add(maxRadY.set("RAD_Y", 300.0, 0.0, 900.0));
     gui.add(freq.set("FREQ",0.8,-2.00,2.00));
-    gui.add(amp.set("AMP",10.0,-30.0,30.0));
+    gui.add(amp.set("AMP",10.0,-60.0,60.0));
     gui.add(speed.set("WAVE_SPEED",2.5,-5.0,5.0));
     gui.add(nRings.set("nRINGS",36,1,64));
     gui.add(nElements.set("nELEMENTS",180,2,400));
@@ -24,17 +24,7 @@ void ofApp::setup(){
     ofBackground(20);
     ofSetCircleResolution(100);
     light.setPointLight();
-    
-    
-    
-    
-    //    maxRadX = 300;
-    //    maxRadY = 300;
-    //    amp = 10;
-    //    freq = 0.8;
-    //    speed = 2.5;
-    //    nRings = 36;
-    //    nElements = 180;
+
 }
 
 //--------------------------------------------------------------
