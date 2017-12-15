@@ -2,7 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+    
+    
     
     ///---- GUI
     gui.setup();
@@ -14,7 +15,7 @@ void ofApp::setup(){
     gui.add(nRings.set("nRINGS",36,1,64));
     gui.add(nElements.set("nELEMENTS",180,2,400));
     //gui.loadFromFile("settings.xml");
-    gui.setTextColor(ofColor(255));
+    //gui.setTextColor(ofColor(255));
     
     ///---- INITIALIZE
     center.set(ofGetWindowWidth()/2, ofGetWindowHeight()/2);
@@ -23,29 +24,31 @@ void ofApp::setup(){
     ofBackground(20);
     ofSetCircleResolution(100);
     light.setPointLight();
-    ofEnableDepthTest();
     
     
     
-//    maxRadX = 300;
-//    maxRadY = 300;
-//    amp = 10;
-//    freq = 0.8;
-//    speed = 2.5;
-//    nRings = 36;
-//    nElements = 180;
+    
+    //    maxRadX = 300;
+    //    maxRadY = 300;
+    //    amp = 10;
+    //    freq = 0.8;
+    //    speed = 2.5;
+    //    nRings = 36;
+    //    nElements = 180;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    gui.draw();
+    
+    ofEnableDepthTest();
+    
     cam.begin();
     float time = ofGetElapsedTimef();
     
@@ -94,62 +97,64 @@ void ofApp::draw(){
         }
     }
     cam.end();
+    ofDisableDepthTest();
+    gui.draw();
     
-
-
+    
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+    
 }

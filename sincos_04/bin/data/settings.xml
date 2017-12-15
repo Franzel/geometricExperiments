@@ -1,1 +1,11 @@
+<group>
+	<RAD_X>200</RAD_X>
+	<RAD_Y>200</RAD_Y>
+	<FREQ>0.8</FREQ>
+	<AMP>10</AMP>
+	<WAVE_SPEED>2.5</WAVE_SPEED>
+	<nRINGS>36</nRINGS>
+	<nELEMENTS>180</nELEMENTS>
+    <group/>
 
+</group>
