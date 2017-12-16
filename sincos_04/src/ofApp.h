@@ -34,9 +34,20 @@ class ofApp : public ofBaseApp{
     ofParameter<float> amp;
     ofParameter<float> speed;
     
-    ofParameter<float> gap;
-    ofParameter<float> thickness;
     ofParameter<int> nRings;
     ofParameter<int> nElements;
+    
+    //Modes
+    bool bMouse;
+    
+    
+    //Export
+    bool bSave;
+    int                 snapCounter;
+    string              snapString;
+    ofImage             img;
+    ofTrueTypeFont      cooper;
+    bool                bSnapshot;
+    float               phase;
 		
 };

@@ -86,8 +86,23 @@ void ofApp::draw(){
             ofDrawLine( pos+diff* (15+sin(speed*time + i*freq)*15), pos+diff* (8+sin(speed*time + i*freq+FOUR_PI)*8));
         }
     }
+    
+    ///CAM
     cam.end();
     ofDisableDepthTest();
+    
+    ///CAPTURE
+    if (bSnapshot == true){
+        // grab a rectangle at 200,200, width and height of 300,180
+        img.grabScreen(0,0, ofGetScreenWidth(), ofGetScreenHeight());
+        
+        string fileName = "snapshot_"+ofToString(10000+snapCounter)+".png";
+        img.save(fileName, OF_IMAGE_QUALITY_BEST);
+        snapString = "saved " + fileName;
+        snapCounter++;
+        bSnapshot = false;
+    }
+    ///GUI
     gui.draw();
     
     
@@ -96,7 +111,16 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    
+    switch (key) {
+        case 's':
+            bSave=true;
+            break;
+        case 'm':
+            bSnapshot=!bSnapshot;
+            break;
+        default:
+            break;
+    }
 }
 
 //--------------------------------------------------------------
