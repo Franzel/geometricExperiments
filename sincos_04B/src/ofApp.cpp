@@ -26,10 +26,10 @@ void ofApp::setup(){
     light.setPointLight();
     
     
-    for(int i=0; i<10;i++){
-        Creature tempCreature(ofRandom(10,30), 24, ofRandom(40,150), ofRandom(40,150), ofRandom(1,2.5), ofRandom(5,60), ofRandom(-2,2));
+    for(int i=0; i<60;i++){
+        Creature tempCreature(ofRandom(3,30), 24, ofRandom(40,150), ofRandom(40,150), ofRandom(1,2.5), ofRandom(5,60), ofRandom(-2,2));
         tempCreature.setup();
-        tempCreature.center.set(ofRandom(-500,500), ofRandom(-500,500), ofRandom(-500,500));
+        tempCreature.center.set(ofRandom(-1500,1500), ofRandom(-1500,1500), ofRandom(-1500,1500));
         creatures.push_back(tempCreature);
         
     }
