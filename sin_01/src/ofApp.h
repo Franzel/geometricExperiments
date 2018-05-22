@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "measureBar.h"
 
 class ofApp : public ofBaseApp{
 
@@ -29,6 +30,14 @@ class ofApp : public ofBaseApp{
     ofVec2f circleOrigin;
     float circleRadius;
     float angle;
+    float sine, cosine;
     
+    ofColor sinColor, cosColor;
+    
+    
+    measureBar sineBar, cosineBar;
+        
 		
 };
+
+
