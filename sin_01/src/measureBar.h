@@ -31,4 +31,4 @@ public:
     string name;
 };
 
-#endif /* measureBar_hpp */
+#endif /* measureBar_h */

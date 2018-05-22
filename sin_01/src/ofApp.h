@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "measureBar.h"
+#include "unitCircle.h"
 
 class ofApp : public ofBaseApp{
 
@@ -27,6 +28,10 @@ class ofApp : public ofBaseApp{
     ofVec2f scrCenter;
     
     //circle
+
+    
+    unitCircle mainCircle;
+    
     ofVec2f circleOrigin;
     float circleRadius;
     float angle;

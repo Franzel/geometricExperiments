@@ -10,18 +10,21 @@ void ofApp::setup(){
     
     ofSetBackgroundColor(255, 240, 230);
     
+
+    ///colors
+    sinColor = ofColor(ofColor::red);
+    cosColor = ofColor(ofColor::blue);
+    
     ///Circle
     ofSetCircleResolution(100);
     circleOrigin.set(scrCenter);
     circleRadius = scr.y/3;
     angle=0;
-    
-    
-    sinColor = ofColor(ofColor::red);
-    cosColor = ofColor(ofColor::blue);
-    
-    sineBar.setup(ofVec2f(circleOrigin + ofVec2f(circleRadius+100,0)), circleRadius,10,-90, sinColor, "SIN");
+    mainCircle.setup(circleOrigin, scr.y/3); //circle setup
 
+    
+    ///measure Bars
+    sineBar.setup(ofVec2f(circleOrigin + ofVec2f(circleRadius+100,0)), circleRadius,10,-90, sinColor, "SIN");
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
 
 }
@@ -33,40 +36,17 @@ void ofApp::update(){
     sine = sin(angle);
     cosineBar.update(cosine);
     sineBar.update(sine);
+    mainCircle.update(angle);
     
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(0);
-    ofNoFill();
-    ofSetLineWidth(3);
-    ofDrawCircle(circleOrigin, circleRadius);
     
-    ofFill();
-    ofDrawCircle(circleOrigin, circleRadius/64);
-    
-    float x = circleOrigin.x + cosine * circleRadius;
-    float y = circleOrigin.y + -sine * circleRadius;
-    ofVec2f angPos;
-    angPos.set(x,y);
-    
-    ofDrawLine(circleOrigin, angPos ); //main angle line
-    ofSetColor(ofColor::red);
-    ofDrawLine(angPos.x,angPos.y, angPos.x, circleOrigin.y);
-    
-    ofSetColor(ofColor::blue);
-    ofDrawLine(circleOrigin.x, circleOrigin.y, angPos.x, circleOrigin.y);
-    
-    
-    
-    //bars
+    mainCircle.draw();
     cosineBar.draw();
     sineBar.draw();
-    
-    
-    
     
     
     //numeric info
