@@ -28,6 +28,8 @@ void unitCircle::update(float _angle){
 
 void unitCircle::draw(){
     
+    
+    
     ofSetColor(0);
     ofNoFill();
     ofSetLineWidth(3);
@@ -43,9 +45,11 @@ void unitCircle::draw(){
     
     ofDrawLine(circleOrigin, angPos ); //main angle line
     ofSetColor(ofColor::red);
+    ofSetLineWidth(1);
     ofDrawLine(angPos.x,angPos.y, angPos.x, circleOrigin.y);
     
     ofSetColor(ofColor::blue);
+    ofSetLineWidth(1);
     ofDrawLine(circleOrigin.x, circleOrigin.y, angPos.x, circleOrigin.y);
     
     

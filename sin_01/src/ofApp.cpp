@@ -20,9 +20,10 @@ void ofApp::setup(){
     circleOrigin.set(scrCenter);
     circleRadius = scr.y/3;
     angle=0;
+    
+    plane.setup(circleOrigin, scr.y/3, 1.0); //cartesian plane
     mainCircle.setup(circleOrigin, scr.y/3); //circle setup
 
-    
     ///measure Bars
     sineBar.setup(ofVec2f(circleOrigin + ofVec2f(circleRadius+100,0)), circleRadius,10,-90, sinColor, "SIN");
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
@@ -44,14 +45,16 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
+    plane.draw();
     mainCircle.draw();
     cosineBar.draw();
     sineBar.draw();
     
     
+    
     //numeric info
     ofSetColor(ofColor::black);
-    ofDrawBitmapString("angle (deg) = " + ofToString(round(ofRadToDeg(angle))), 100, 100);
+    ofDrawBitmapString("angle (deg) = " + ofToString(ofRadToDeg(angle),1), 100, 100);
     ofDrawBitmapString("angle (rad) = " + ofToString(angle,2), 100, 120);
     ofDrawBitmapString("sin         = " + ofToString(sin(angle),1), 100, 140);
     ofDrawBitmapString("cos         = " + ofToString(cos(angle),1), 100, 160);

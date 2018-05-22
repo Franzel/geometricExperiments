@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A23970120B4B28500D13851 /* measureBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A2396FF20B4B28500D13851 /* measureBar.cpp */; };
 		8A23970520B4CD7700D13851 /* unitCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A23970320B4CD7700D13851 /* unitCircle.cpp */; };
+		8A23970820B4D15400D13851 /* cartesianPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A23970620B4D15400D13851 /* cartesianPlane.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -48,6 +49,8 @@
 		8A23970020B4B28500D13851 /* measureBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = measureBar.h; sourceTree = "<group>"; };
 		8A23970320B4CD7700D13851 /* unitCircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unitCircle.cpp; sourceTree = "<group>"; };
 		8A23970420B4CD7700D13851 /* unitCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unitCircle.h; sourceTree = "<group>"; };
+		8A23970620B4D15400D13851 /* cartesianPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cartesianPlane.cpp; sourceTree = "<group>"; };
+		8A23970720B4D15400D13851 /* cartesianPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cartesianPlane.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* sin_01Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sin_01Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -115,6 +118,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				8A23970320B4CD7700D13851 /* unitCircle.cpp */,
 				8A23970420B4CD7700D13851 /* unitCircle.h */,
+				8A23970620B4D15400D13851 /* cartesianPlane.cpp */,
+				8A23970720B4D15400D13851 /* cartesianPlane.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -215,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A23970820B4D15400D13851 /* cartesianPlane.cpp in Sources */,
 				8A23970120B4B28500D13851 /* measureBar.cpp in Sources */,
 				8A23970520B4CD7700D13851 /* unitCircle.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,

@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "measureBar.h"
 #include "unitCircle.h"
+#include "cartesianPlane.h"
 
 class ofApp : public ofBaseApp{
 
@@ -28,9 +29,10 @@ class ofApp : public ofBaseApp{
     ofVec2f scrCenter;
     
     //circle
-
-    
     unitCircle mainCircle;
+    
+    //cartesian
+    cartesianPlane plane;
     
     ofVec2f circleOrigin;
     float circleRadius;
