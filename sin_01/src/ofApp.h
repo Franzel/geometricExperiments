@@ -43,6 +43,9 @@ class ofApp : public ofBaseApp{
     
     
     measureBar sineBar, cosineBar;
+    
+    ///Fonts
+    ofTrueTypeFont fontLight;
         
 		
 };

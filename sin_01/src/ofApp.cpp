@@ -27,6 +27,14 @@ void ofApp::setup(){
     ///measure Bars
     sineBar.setup(ofVec2f(circleOrigin + ofVec2f(circleRadius+100,0)), circleRadius,10,-90, sinColor, "SIN");
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
+    
+    
+    ///Fonts
+    float fontSize = 48;
+    ofTrueTypeFont::setGlobalDpi(72);
+    fontLight.load("GT-America-Mono-Medium.otf", fontSize, true, true);
+    fontLight.setLineHeight(fontSize);
+    fontLight.setLetterSpacing(1.0);
 
 }
 
@@ -50,11 +58,14 @@ void ofApp::draw(){
     cosineBar.draw();
     sineBar.draw();
     
+    //fonts
+//    fontLight.drawString(ofToString(sin(angle),2), sineBar.pos.x + 30, sineBar.pos.y + sineBar.longitude * -sineBar.magnitude + fontLight.getLineHeight()/2);
+//    fontLight.drawString(ofToString(cos(angle),2), cosineBar.pos.x + cosineBar.longitude * cosineBar.magnitude - fontLight.getLineHeight()/2 , cosineBar.pos.y - 30);
     
     
     //numeric info
     ofSetColor(ofColor::black);
-    ofDrawBitmapString("angle (deg) = " + ofToString(ofRadToDeg(angle),1), 100, 100);
+    ofDrawBitmapString("ANGLE (deg) = " + ofToString(ofRadToDeg(angle),1), 100, 100);
     ofDrawBitmapString("angle (rad) = " + ofToString(angle,2), 100, 120);
     ofDrawBitmapString("sin         = " + ofToString(sin(angle),1), 100, 140);
     ofDrawBitmapString("cos         = " + ofToString(cos(angle),1), 100, 160);

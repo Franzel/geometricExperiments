@@ -29,6 +29,8 @@ public:
     float orientation;
     float magnitude;
     string name;
+    
+    ofTrueTypeFont fontLight;
 };
 
 #endif /* measureBar_h */
