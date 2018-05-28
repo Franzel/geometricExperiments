@@ -62,7 +62,7 @@ void measureBar::draw(){
     ofPushMatrix();
     ofTranslate(longitude * magnitude , -fontLight.getLineHeight()/2 - orientation/2);
     ofRotate(-orientation);
-    fontLight.drawString(ofToString(magnitude,2), 0,0);
+    fontLight.drawString(ofToString(magnitude,3), 0,0);
     ofPopMatrix();
     
     ofPopMatrix();

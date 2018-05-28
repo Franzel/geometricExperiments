@@ -28,8 +28,6 @@ void unitCircle::update(float _angle){
 
 void unitCircle::draw(){
     
-    
-    
     ofSetColor(0);
     ofNoFill();
     ofSetLineWidth(3);
@@ -52,7 +50,23 @@ void unitCircle::draw(){
     ofSetLineWidth(1);
     ofDrawLine(circleOrigin.x, circleOrigin.y, angPos.x, circleOrigin.y);
     
+    drawAngleTip(angPos);
     
 }
+
+void unitCircle::drawAngleTip(ofVec2f _pos){
+    float dx = _pos.x - circleOrigin.x;
+    float dy = _pos.y - circleOrigin.y;
+    ofPushMatrix();
+    ofTranslate(_pos.x, _pos.y);
+    ofRotateZ(ofRadToDeg(atan2(-dx, dy)));
+    float triangleSize= 10;
+    ofSetColor(100,0,100);
+    ofDrawTriangle(triangleSize,triangleSize,-triangleSize,triangleSize,0,-triangleSize*2);
+    ofPopMatrix();
+    
+}
+
+
 
 

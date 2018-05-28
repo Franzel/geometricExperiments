@@ -17,7 +17,7 @@ void ofApp::setup(){
     
     ///Circle
     ofSetCircleResolution(100);
-    circleOrigin.set(scrCenter);
+    circleOrigin.set(scrCenter.x/3 *1.5, scrCenter.y);
     circleRadius = scr.y/3;
     angle=0;
     
@@ -40,7 +40,8 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    angle = ofMap(mouseY, 0, scr.y, 0, TWO_PI);
+//    angle = ofMap(mouseY, 0, scr.y, 0, TWO_PI);
+        angle = ofGetElapsedTimef();
     cosine = cos(angle);
     sine = sin(angle);
     cosineBar.update(cosine);
@@ -58,17 +59,13 @@ void ofApp::draw(){
     cosineBar.draw();
     sineBar.draw();
     
-    //fonts
-//    fontLight.drawString(ofToString(sin(angle),2), sineBar.pos.x + 30, sineBar.pos.y + sineBar.longitude * -sineBar.magnitude + fontLight.getLineHeight()/2);
-//    fontLight.drawString(ofToString(cos(angle),2), cosineBar.pos.x + cosineBar.longitude * cosineBar.magnitude - fontLight.getLineHeight()/2 , cosineBar.pos.y - 30);
-    
-    
+   
     //numeric info
     ofSetColor(ofColor::black);
-    ofDrawBitmapString("ANGLE (deg) = " + ofToString(ofRadToDeg(angle),1), 100, 100);
-    ofDrawBitmapString("angle (rad) = " + ofToString(angle,2), 100, 120);
-    ofDrawBitmapString("sin         = " + ofToString(sin(angle),1), 100, 140);
-    ofDrawBitmapString("cos         = " + ofToString(cos(angle),1), 100, 160);
+    ofDrawBitmapString("ANGLE (deg) = " + ofToString(ofRadToDeg(angle),4), 100, 100);
+    ofDrawBitmapString("angle (rad) = " + ofToString(angle,4), 100, 120);
+    ofDrawBitmapString("sin         = " + ofToString(sin(angle),4), 100, 140);
+    ofDrawBitmapString("cos         = " + ofToString(cos(angle),4), 100, 160);
 
 
 }
