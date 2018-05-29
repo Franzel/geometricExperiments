@@ -48,7 +48,7 @@ void ofApp::setup(){
 void ofApp::update(){
     angle = ofMap(mouseY, 0, scr.y, 0, TWO_PI);
     //        angle = ofGetElapsedTimef();
-    angle = ofMap(inputAngle,0.0, 1.0, TWO_PI, 0.0f);
+//    angle = ofMap(inputAngle,0.0, 1.0, TWO_PI, 0.0f);
     cosine = cos(angle);
     sine = sin(angle);
     cosineBar.update(cosine);

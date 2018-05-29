@@ -21,10 +21,14 @@ public:
     void update(float _angle);
     void draw();
     void drawAngleTip(ofVec2f _pos);
+    void drawAngleArc();
+    void displayAngle();
     
     ofVec2f circleOrigin;
     float circleRadius;
     float angle;
+    
+    ofTrueTypeFont font;
     
 };
 
