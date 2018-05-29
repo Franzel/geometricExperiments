@@ -39,18 +39,86 @@ void ofApp::setup(){
     
     //OSC
     receiver.setup(PORT);
+    current_msg_string = 0;
+    cout << "listening for osc messages on port " << PORT << "\n";
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-//    angle = ofMap(mouseY, 0, scr.y, 0, TWO_PI);
-        angle = ofGetElapsedTimef();
+    angle = ofMap(mouseY, 0, scr.y, 0, TWO_PI);
+//        angle = ofGetElapsedTimef();
+    angle = ofMap(inputAngle,0.0, 1.0, TWO_PI, 0.0f);
     cosine = cos(angle);
     sine = sin(angle);
     cosineBar.update(cosine);
     sineBar.update(sine);
     mainCircle.update(angle);
+    
+    
+    
+    // hide old messages
+    for(int i = 0; i < NUM_MSG_STRINGS; i++){
+        if(timers[i] < ofGetElapsedTimef()){
+            msg_strings[i] = "";
+        }
+    }
+    
+    // check for waiting messages
+    while(receiver.hasWaitingMessages()){
+        // get the next message
+        ofxOscMessage m;
+        receiver.getNextMessage(m);
+        
+        // check for mouse moved message
+        if(m.getAddress() == "/mouse/position"){
+            // both the arguments are int32's
+            mouseX = m.getArgAsInt32(0);
+            mouseY = m.getArgAsInt32(1);
+        }
+        // check for mouse button message
+        else if(m.getAddress() == "/mouse/button"){
+            // the single argument is a string
+            mouseButtonState = m.getArgAsString(0);
+        }
+        
+        else if (m.getAddress() == "/wacom/1/ring/1"){
+            inputAngle = m.getArgAsFloat(0);
+        }
+        else{
+            // unrecognized message: display on the bottom of the screen
+            string msg_string;
+            msg_string = m.getAddress();
+            msg_string += ": ";
+            for(int i = 0; i < m.getNumArgs(); i++){
+                // get the argument type
+                msg_string += m.getArgTypeName(i);
+                msg_string += ":";
+                // display the argument - make sure we get the right type
+                if(m.getArgType(i) == OFXOSC_TYPE_INT32){
+                    msg_string += ofToString(m.getArgAsInt32(i));
+                }
+                else if(m.getArgType(i) == OFXOSC_TYPE_FLOAT){
+                    msg_string += ofToString(m.getArgAsFloat(i));
+                }
+                else if(m.getArgType(i) == OFXOSC_TYPE_STRING){
+                    msg_string += m.getArgAsString(i);
+                }
+                else{
+                    msg_string += "unknown";
+                }
+            }
+            // add to the list of strings to display
+            msg_strings[current_msg_string] = msg_string;
+            timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
+            current_msg_string = (current_msg_string + 1) % NUM_MSG_STRINGS;
+            // clear the next line
+            msg_strings[current_msg_string] = "";
+        }
+        
+    }
+
+    
     
 
 }
@@ -70,6 +138,22 @@ void ofApp::draw(){
     ofDrawBitmapString("angle (rad) = " + ofToString(angle,4), 100, 120);
     ofDrawBitmapString("sin         = " + ofToString(sin(angle),4), 100, 140);
     ofDrawBitmapString("cos         = " + ofToString(cos(angle),4), 100, 160);
+    
+    
+    
+    string buf;
+    buf = "listening for osc messages on port" + ofToString(PORT);
+    ofDrawBitmapString(buf, 10, 20);
+    
+
+    
+    // draw mouse state
+    buf = "inputAngle: " + ofToString(inputAngle, 4);
+    ofDrawBitmapString(buf, 430, 20);
+    
+    for(int i = 0; i < NUM_MSG_STRINGS; i++){
+        ofDrawBitmapString(msg_strings[i], 10, 40 + 15 * i);
+    }
 
 
 }
