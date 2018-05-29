@@ -55,10 +55,8 @@ class ofApp : public ofBaseApp{
     ///OSC
     ofxOscReceiver receiver;
     int current_msg_string;
-    string msg_strings[NUM_MSG_STRINGS];
-    float timers[NUM_MSG_STRINGS];
     float inputAngle;
-    string mouseButtonState;
+
 
 		
 };
