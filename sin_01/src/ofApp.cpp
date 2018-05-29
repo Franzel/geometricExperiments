@@ -35,6 +35,10 @@ void ofApp::setup(){
     fontLight.load("GT-America-Mono-Medium.otf", fontSize, true, true);
     fontLight.setLineHeight(fontSize);
     fontLight.setLetterSpacing(1.0);
+    
+    
+    //OSC
+    receiver.setup(PORT);
 
 }
 

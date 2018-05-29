@@ -4,6 +4,11 @@
 #include "measureBar.h"
 #include "unitCircle.h"
 #include "cartesianPlane.h"
+#include "ofxOsc.h"
+
+// listen on port 12345
+#define PORT 9000
+#define NUM_MSG_STRINGS 20
 
 class ofApp : public ofBaseApp{
 
@@ -46,7 +51,9 @@ class ofApp : public ofBaseApp{
     
     ///Fonts
     ofTrueTypeFont fontLight;
-        
+    
+    ///OSC
+    ofxOscReceiver receiver;
 		
 };
 
