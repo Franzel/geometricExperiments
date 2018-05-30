@@ -5,6 +5,7 @@
 #include "unitCircle.h"
 #include "cartesianPlane.h"
 #include "ofxOsc.h"
+#include "textDisplay.h"
 
 // listen on port 12345
 #define PORT 9000
@@ -51,6 +52,8 @@ class ofApp : public ofBaseApp{
     
     ///Fonts
     ofTrueTypeFont fontLight;
+    textDisplay textBox;
+    
     
     ///OSC
     ofxOscReceiver receiver;

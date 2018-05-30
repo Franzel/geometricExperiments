@@ -98,6 +98,9 @@ void ofApp::draw(){
     buf = "inputAngle: " + ofToString(inputAngle, 4);
     ofDrawBitmapString(buf, 100, 40);
     
+    //text info
+    textBox.draw();
+    
     
     
 }

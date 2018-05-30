@@ -45,6 +45,13 @@ void measureBar::update(float _magnitude){
 }
 
 void measureBar::draw(){
+    
+    float offset;
+    if(name=="SIN"){
+        offset = -thickness*2;
+    }else{
+        offset = thickness*3;
+    }
 
     ofPushMatrix();
     ofTranslate(pos);
@@ -52,17 +59,33 @@ void measureBar::draw(){
     
     ofSetColor(0);
     ofSetLineWidth(0.5);
-    ofDrawLine(-longitude,thickness/2,longitude,thickness/2);
+    ofDrawLine(-longitude,thickness/2,longitude,thickness/2); //base line
+    ofDrawLine(0,0,0,thickness); //base line
+    ofDrawLine(-longitude,0,-longitude,thickness);
+    ofDrawLine(longitude,0,longitude,thickness);
+
+    
 
     ofSetColor(color);
-    ofDrawRectangle(0,0, longitude * magnitude, thickness);
+    ofDrawRectangle(0,0, longitude * magnitude, thickness); //main thick bar
+    
+    //sin-cos ruler numbers
+    ofPushMatrix();
+    ofTranslate(-longitude, offset);
+    ofRotate(-orientation);
+    fontSmall.drawString("-1", 0 ,0 );
+    ofPopMatrix();
     
     ofPushMatrix();
-    ofTranslate(0, thickness*2);
+    ofTranslate(0, offset);
     ofRotate(-orientation);
-    fontSmall.drawString("-1", -longitude, thickness*2);
-    fontSmall.drawString("0", 0, thickness*2);
-    fontSmall.drawString("1", longitude, thickness*2);
+    fontSmall.drawString("0", 0, 6);
+    ofPopMatrix();
+    
+    ofPushMatrix();
+    ofTranslate(longitude, offset);
+    ofRotate(-orientation);
+    fontSmall.drawString("1", 0,0);
     ofPopMatrix();
     
     //text info
