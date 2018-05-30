@@ -19,6 +19,10 @@ measureBar::measureBar(){
     fontLight.load("GT-America-Mono-Medium.otf", fontSize, true, true);
     fontLight.setLineHeight(fontSize);
     fontLight.setLetterSpacing(1.0);
+    
+    fontSmall.load("GT-America-Mono-Medium.otf", fontSize/2, true, true);
+    fontSmall.setLineHeight(fontSize/2);
+    fontSmall.setLetterSpacing(1.0);
 
     
 }
@@ -53,15 +57,19 @@ void measureBar::draw(){
     ofSetColor(color);
     ofDrawRectangle(0,0, longitude * magnitude, thickness);
     
-    ofDrawBitmapString(name, -longitude-50, thickness);
-    ofDrawBitmapString("-1", -longitude, thickness*2);
-    ofDrawBitmapString("0", 0, thickness*2);
-    ofDrawBitmapString("1", longitude, thickness*2);
-
+    ofPushMatrix();
+    ofTranslate(0, thickness*2);
+    ofRotate(-orientation);
+    fontSmall.drawString("-1", -longitude, thickness*2);
+    fontSmall.drawString("0", 0, thickness*2);
+    fontSmall.drawString("1", longitude, thickness*2);
+    ofPopMatrix();
+    
     //text info
     ofPushMatrix();
     ofTranslate(longitude * magnitude , -fontLight.getLineHeight()/2 - orientation/2);
     ofRotate(-orientation);
+    fontSmall.drawString(name, 0, -fontLight.getLineHeight()*1.5);
     fontLight.drawString(ofToString(magnitude,3), 0,0);
     ofPopMatrix();
     

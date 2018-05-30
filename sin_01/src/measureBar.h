@@ -31,6 +31,7 @@ public:
     string name;
     
     ofTrueTypeFont fontLight;
+    ofTrueTypeFont fontSmall;
 };
 
 #endif /* measureBar_h */
