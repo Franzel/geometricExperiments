@@ -21,6 +21,9 @@ public:
     float rotaryAngle();
     
     float ang;
+    ofSerial serial;
+    string msg;
+    int byteData;
     
 };
 

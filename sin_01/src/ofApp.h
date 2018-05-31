@@ -62,6 +62,7 @@ class ofApp : public ofBaseApp{
     float inputAngle;
     
     ///ARDUINO
+    arduinoReader arduino;
     
 
 

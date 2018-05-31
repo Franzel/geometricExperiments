@@ -42,21 +42,25 @@ void ofApp::setup(){
     current_msg_string = 0;
     cout << "listening for osc messages on port " << PORT << "\n";
     
+    ///ARDUINO
+    arduino.setup();
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     angle = ofMap(mouseY, 0, scr.y, 0, TWO_PI);
-    //        angle = ofGetElapsedTimef();
-//    angle = ofMap(inputAngle,0.0, 1.0, TWO_PI, 0.0f);
+    angle = ofGetElapsedTimef();
+    angle = ofMap(inputAngle,0.0, 1.0, TWO_PI, 0.0f);
+    
+    arduino.update();
+    angle = arduino.rotaryAngle();
+    
     cosine = cos(angle);
     sine = sin(angle);
     cosineBar.update(cosine);
     sineBar.update(sine);
     mainCircle.update(angle);
-    
-    
-    
 
     ///OSC
     // check for waiting messages
@@ -87,6 +91,7 @@ void ofApp::draw(){
     ofDrawBitmapString("angle (rad) = " + ofToString(angle,4), 100, 120);
     ofDrawBitmapString("sin         = " + ofToString(sin(angle),4), 100, 140);
     ofDrawBitmapString("cos         = " + ofToString(cos(angle),4), 100, 160);
+    ofDrawBitmapString("Serial      = " + ofToString(arduino.byteData,4), 100, 180);
     
     
     ///OSC
