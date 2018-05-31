@@ -6,6 +6,7 @@
 #include "cartesianPlane.h"
 #include "ofxOsc.h"
 #include "textDisplay.h"
+#include "arduinoReader.hpp"
 
 // listen on port 12345
 #define PORT 9000
@@ -59,6 +60,9 @@ class ofApp : public ofBaseApp{
     ofxOscReceiver receiver;
     int current_msg_string;
     float inputAngle;
+    
+    ///ARDUINO
+    
 
 
 		
