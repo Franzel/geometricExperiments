@@ -13,7 +13,7 @@ arduinoReader::arduinoReader(){
 }
 
 void arduinoReader::setup(){
-    serial.setup("/dev/cu.usbmodem14411", 9600);
+    serial.setup("/dev/cu.usbmodem1461", 9600);
 
     
 }
@@ -33,7 +33,6 @@ void arduinoReader::update(){
     }
     
     ang = ofMap(byteData,0,255,0,TWO_PI, true);
-//    cout<<byteData<<endl;
     
 }
 float arduinoReader::rotaryAngle(){
