@@ -1,7 +1,7 @@
-#include "scene0102.h"
+#include "scene0103.h"
 
 //--------------------------------------------------------------
-void scene0102::setup(){
+void scene0103::setup(){
     
     scr.set(ofGetScreenWidth(), ofGetScreenHeight());
     ofSetWindowShape(scr.x, scr.y);
@@ -32,7 +32,7 @@ void scene0102::setup(){
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
     
     ///INFO
-    textBox.setup("info_01-02.png");
+    textBox.setup("info_01-03.png");
     bShowRawinfo = false;
     
     ///ARDUINO
@@ -45,7 +45,7 @@ void scene0102::setup(){
 }
 
 //--------------------------------------------------------------
-void scene0102::update(){
+void scene0103::update(){
     if(angleInput==0){
         angle = ofMap(ofGetMouseY(), 0, scr.y, 0, TWO_PI);//mouse
     }
@@ -76,11 +76,15 @@ void scene0102::update(){
 }
 
 //--------------------------------------------------------------
-void scene0102::draw(){
+void scene0103::draw(){
     
+    plane.drawX();
     plane.drawY();
     plane.drawYGrid();
+    plane.drawXGrid();
+    plane.drawSine();
     plane.drawCosine();
+
     
    // mainCircle.drawSine();
     mainCircle.drawCosine();
@@ -104,7 +108,7 @@ void scene0102::draw(){
 }
 
 //--------------------------------------------------------------
-void scene0102::keyPressed(int key){
+void scene0103::keyPressed(int key){
     switch (key) {
         case '0':
             angleInput = 0;

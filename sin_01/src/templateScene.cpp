@@ -1,7 +1,7 @@
-#include "scene0102.h"
+#include "templateScene.h"
 
 //--------------------------------------------------------------
-void scene0102::setup(){
+void templateScene::setup(){
     
     scr.set(ofGetScreenWidth(), ofGetScreenHeight());
     ofSetWindowShape(scr.x, scr.y);
@@ -45,7 +45,7 @@ void scene0102::setup(){
 }
 
 //--------------------------------------------------------------
-void scene0102::update(){
+void templateScene::update(){
     if(angleInput==0){
         angle = ofMap(ofGetMouseY(), 0, scr.y, 0, TWO_PI);//mouse
     }
@@ -71,22 +71,20 @@ void scene0102::update(){
     cosineBar.update(cosine);
     sineBar.update(sine);
     mainCircle.update(angle);
-    plane.update(-cosine);
     
 }
 
 //--------------------------------------------------------------
-void scene0102::draw(){
+void templateScene::draw(){
     
+    plane.drawX();
     plane.drawY();
-    plane.drawYGrid();
-    plane.drawCosine();
     
-   // mainCircle.drawSine();
+    mainCircle.drawSine();
     mainCircle.drawCosine();
-    //mainCircle.draw();
+    mainCircle.draw();
     cosineBar.draw();
-    //sineBar.draw();
+    sineBar.draw();
     textBox.drawImage();
     
     //raw numeric info
@@ -104,7 +102,7 @@ void scene0102::draw(){
 }
 
 //--------------------------------------------------------------
-void scene0102::keyPressed(int key){
+void templateScene::keyPressed(int key){
     switch (key) {
         case '0':
             angleInput = 0;

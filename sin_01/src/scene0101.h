@@ -59,6 +59,10 @@ class scene0101 : public baseScene{
     
     int angleInput;
     string angleInputName;
+    bool bShowRawinfo;
+    
+    float lastCycleTime;
+    float cycleDuration;
     
 
 

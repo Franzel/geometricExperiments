@@ -4,6 +4,7 @@
 #include "baseScene.h"
 #include "scene0101.h"
 #include "scene0102.h"
+#include "scene0103.h"
 
 class ofApp : public ofBaseApp{
 

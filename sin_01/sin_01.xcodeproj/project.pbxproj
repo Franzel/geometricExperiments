@@ -20,6 +20,8 @@
 		879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFBBF4CC43DEE890B3C3E /* OscTypes.cpp */; };
 		8A11D43320BF65D500D274CE /* textDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D43120BF65D500D274CE /* textDisplay.cpp */; };
 		8A2C3B4420C7108A00B34836 /* scene0102.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C3B4220C7108A00B34836 /* scene0102.cpp */; };
+		8A2C3B4720C749CC00B34836 /* templateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C3B4520C749CC00B34836 /* templateScene.cpp */; };
+		8A2C3B4A20C7530200B34836 /* scene0103.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C3B4820C7530200B34836 /* scene0103.cpp */; };
 		8A7842DC20C0940800C7B0FC /* arduinoReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A7842DA20C0940800C7B0FC /* arduinoReader.cpp */; };
 		8A90A08620C70CB8001FC03C /* baseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A08420C70CB8001FC03C /* baseScene.cpp */; };
 		8A90A08920C70CD3001FC03C /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A08720C70CD3001FC03C /* ofApp.cpp */; };
@@ -85,6 +87,10 @@
 		8A11D43220BF65D500D274CE /* textDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textDisplay.h; sourceTree = "<group>"; };
 		8A2C3B4220C7108A00B34836 /* scene0102.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene0102.cpp; sourceTree = "<group>"; };
 		8A2C3B4320C7108A00B34836 /* scene0102.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene0102.h; sourceTree = "<group>"; };
+		8A2C3B4520C749CC00B34836 /* templateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = templateScene.cpp; sourceTree = "<group>"; };
+		8A2C3B4620C749CC00B34836 /* templateScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = templateScene.h; sourceTree = "<group>"; };
+		8A2C3B4820C7530200B34836 /* scene0103.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene0103.cpp; sourceTree = "<group>"; };
+		8A2C3B4920C7530200B34836 /* scene0103.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene0103.h; sourceTree = "<group>"; };
 		8A7842DA20C0940800C7B0FC /* arduinoReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = arduinoReader.cpp; sourceTree = "<group>"; };
 		8A7842DB20C0940800C7B0FC /* arduinoReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = arduinoReader.hpp; sourceTree = "<group>"; };
 		8A90A08420C70CB8001FC03C /* baseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = baseScene.cpp; sourceTree = "<group>"; };
@@ -248,20 +254,24 @@
 				8A90A08420C70CB8001FC03C /* baseScene.cpp */,
 				8A90A08520C70CB8001FC03C /* baseScene.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E4B69E1E0A3A1BDC003C02F2 /* scene0101.cpp */,
-				E4B69E1F0A3A1BDC003C02F2 /* scene0101.h */,
-				8A2C3B4220C7108A00B34836 /* scene0102.cpp */,
-				8A2C3B4320C7108A00B34836 /* scene0102.h */,
-				8A7842DA20C0940800C7B0FC /* arduinoReader.cpp */,
-				8A7842DB20C0940800C7B0FC /* arduinoReader.hpp */,
+				C401CFBE7DD88A00DCBED170 /* unitCircle.cpp */,
+				58D049A3D22072654BA7CCB5 /* unitCircle.h */,
 				7E522FC399629F14EE30E481 /* cartesianPlane.cpp */,
 				47E124533879C13690836394 /* cartesianPlane.h */,
 				D542CB82747D3B77BA37EC15 /* measureBar.cpp */,
 				551441C92D0DC89975033143 /* measureBar.h */,
-				C401CFBE7DD88A00DCBED170 /* unitCircle.cpp */,
-				58D049A3D22072654BA7CCB5 /* unitCircle.h */,
 				8A11D43120BF65D500D274CE /* textDisplay.cpp */,
 				8A11D43220BF65D500D274CE /* textDisplay.h */,
+				E4B69E1E0A3A1BDC003C02F2 /* scene0101.cpp */,
+				E4B69E1F0A3A1BDC003C02F2 /* scene0101.h */,
+				8A2C3B4220C7108A00B34836 /* scene0102.cpp */,
+				8A2C3B4320C7108A00B34836 /* scene0102.h */,
+				8A2C3B4820C7530200B34836 /* scene0103.cpp */,
+				8A2C3B4920C7530200B34836 /* scene0103.h */,
+				8A2C3B4520C749CC00B34836 /* templateScene.cpp */,
+				8A2C3B4620C749CC00B34836 /* templateScene.h */,
+				8A7842DA20C0940800C7B0FC /* arduinoReader.cpp */,
+				8A7842DB20C0940800C7B0FC /* arduinoReader.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -392,6 +402,7 @@
 				4CCB81C26A181DAAB3BBF0B5 /* measureBar.cpp in Sources */,
 				E6A112205162AB398C8BB14D /* unitCircle.cpp in Sources */,
 				8A11D43320BF65D500D274CE /* textDisplay.cpp in Sources */,
+				8A2C3B4720C749CC00B34836 /* templateScene.cpp in Sources */,
 				8A90A08920C70CD3001FC03C /* ofApp.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
@@ -400,6 +411,7 @@
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
 				8A2C3B4420C7108A00B34836 /* scene0102.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
+				8A2C3B4A20C7530200B34836 /* scene0103.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,

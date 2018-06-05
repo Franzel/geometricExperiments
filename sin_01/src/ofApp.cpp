@@ -5,7 +5,7 @@
 void ofApp::setup(){
 	scenes[0] = new scene0101();
 	scenes[1] = new scene0102();
-	scenes[2] = new scene0101();
+	scenes[2] = new scene0103();
 	
 	currentScene = 0;
 	
@@ -44,7 +44,7 @@ void ofApp::keyPressed(int key){
     }
 	((scene0101*)scenes[0])->keyPressed(key);
     ((scene0102*)scenes[1])->keyPressed(key);
-    ((scene0101*)scenes[3])->keyPressed(key);
+    ((scene0103*)scenes[2])->keyPressed(key);
 
 	
 }

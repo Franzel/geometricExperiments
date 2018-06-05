@@ -10,7 +10,7 @@
 
 
 
-class scene0102 : public baseScene{
+class templateScene : public baseScene{
 
 	public:
 		void setup();

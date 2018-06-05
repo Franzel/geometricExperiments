@@ -37,7 +37,7 @@ void textDisplay::drawText(){
 void textDisplay::drawImage(){
     ofPushStyle();
     ofSetColor(255);
-    img.draw(1080,0, 960, 1080);
+    img.draw(ofGetScreenWidth()-img.getWidth(),0, img.getWidth(), img.getHeight());
     ofPopStyle();
     
 }
