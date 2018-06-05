@@ -68,6 +68,9 @@ void ofApp::update(){
 void ofApp::draw(){
     
     plane.draw();
+    
+    mainCircle.drawSine();
+    mainCircle.drawCosine();
     mainCircle.draw();
     cosineBar.draw();
     sineBar.draw();

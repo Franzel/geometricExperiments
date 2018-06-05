@@ -14,6 +14,7 @@ unitCircle::unitCircle(){
     font.load("GT-America-Mono-Medium.otf", fontSize, true, true);
     font.setLineHeight(fontSize);
     font.setLetterSpacing(1.0);
+    angPos.set(0,0);
     
 }
 
@@ -29,6 +30,10 @@ void unitCircle::setup(ofVec2f _ctr, float _radius){
 void unitCircle::update(float _angle){
     angle = _angle;
     
+    float x = circleOrigin.x + cos(angle) * circleRadius;
+    float y = circleOrigin.y + -sin(angle) * circleRadius;
+    angPos.set(x,y);
+    
 }
 
 void unitCircle::draw(){
@@ -40,28 +45,11 @@ void unitCircle::draw(){
     
     ofFill();
     ofDrawCircle(circleOrigin, circleRadius/64);
-    
-    float x = circleOrigin.x + cos(angle) * circleRadius;
-    float y = circleOrigin.y + -sin(angle) * circleRadius;
-    ofVec2f angPos;
-    angPos.set(x,y);
-    
-    //sine line
-    ofDrawLine(circleOrigin, angPos ); //main angle line
-    ofSetColor(ofColor::red);
-    ofSetLineWidth(2);
-    ofDrawLine(angPos.x,angPos.y, angPos.x, circleOrigin.y);
-    
-    //cosine line
-    ofSetColor(ofColor::blue);
-    ofSetLineWidth(2);
-    ofDrawLine(circleOrigin.x, circleOrigin.y, angPos.x, circleOrigin.y);
-    
+
     drawAngleArc();
     drawAngleTip(angPos);
     displayAngle();
-    
-    
+   
 }
 
 void unitCircle::drawAngleTip(ofVec2f _pos){
@@ -70,7 +58,7 @@ void unitCircle::drawAngleTip(ofVec2f _pos){
     ofPushMatrix();
     ofTranslate(_pos.x, _pos.y);
     ofRotateZ(ofRadToDeg(atan2(-dx, dy)));
-    float triangleSize= 10;
+    float triangleSize= 5;
     ofSetColor(100,0,100);
     ofDrawTriangle(triangleSize,triangleSize,-triangleSize,triangleSize,0,-triangleSize*2);
     ofPopMatrix();
@@ -108,6 +96,22 @@ void unitCircle::displayAngle(){
     
 }
 
+void unitCircle::drawSine(){
+    //sine line
+    ofDrawLine(circleOrigin, angPos ); //main angle line
+    ofSetColor(ofColor::red);
+    ofSetLineWidth(2);
+    ofDrawLine(angPos.x,angPos.y, angPos.x, circleOrigin.y);
+    
+}
+
+void unitCircle::drawCosine(){
+    //cosine line
+    ofSetColor(ofColor::blue);
+    ofSetLineWidth(2);
+    ofDrawLine(circleOrigin.x, circleOrigin.y, angPos.x, circleOrigin.y);
+    
+}
 
 
 

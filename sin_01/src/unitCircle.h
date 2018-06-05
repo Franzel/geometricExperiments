@@ -23,12 +23,17 @@ public:
     void drawAngleTip(ofVec2f _pos);
     void drawAngleArc();
     void displayAngle();
+    void drawSine();
+    void drawCosine();
     
     ofVec2f circleOrigin;
     float circleRadius;
     float angle;
     
     ofTrueTypeFont font;
+    ofVec2f angPos;
+
+    
     
 };
 
