@@ -4,7 +4,6 @@
 #include "measureBar.h"
 #include "unitCircle.h"
 #include "cartesianPlane.h"
-#include "ofxOsc.h"
 #include "textDisplay.h"
 #include "arduinoReader.hpp"
 
@@ -54,15 +53,13 @@ class ofApp : public ofBaseApp{
     ///Fonts
     ofTrueTypeFont fontLight;
     textDisplay textBox;
-    
-    
-    ///OSC
-    ofxOscReceiver receiver;
-    int current_msg_string;
-    float inputAngle;
+
     
     ///ARDUINO
     arduinoReader arduino;
+    
+    int angleInput;
+    string angleInputName;
     
 
 

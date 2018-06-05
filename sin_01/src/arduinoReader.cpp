@@ -13,7 +13,7 @@ arduinoReader::arduinoReader(){
 }
 
 void arduinoReader::setup(){
-    serial.setup("/dev/cu.usbmodem1461", 9600);
+    serial.setup("/dev/cu.usbmodem1411", 9600);
 
     
 }

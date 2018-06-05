@@ -18,9 +18,10 @@ class textDisplay{
     
     textDisplay();
     
-    void setup();
+    void setup(string file);
     void update();
-    void draw ();
+    void drawText();
+    void drawImage();
     
     string title;
     string body;
@@ -30,6 +31,8 @@ class textDisplay{
     ofTrueTypeFont titleFont;
     ofTrueTypeFont bodyFont;
     ofTrueTypeFont captionFont;
+    
+    ofImage img;
     
     
 };
