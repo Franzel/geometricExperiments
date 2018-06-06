@@ -1,7 +1,7 @@
-#include "templateScene.h"
+#include "scene0201.h"
 
 //--------------------------------------------------------------
-void templateScene::setup(){
+void scene0201::setup(){
     
     scr.set(ofGetScreenWidth(), ofGetScreenHeight());
     ofSetWindowShape(scr.x, scr.y);
@@ -32,7 +32,7 @@ void templateScene::setup(){
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
     
     ///INFO
-    textBox.setup("info_01-02.png");
+    textBox.setup("info_02-01.png");
     bShowRawinfo = false;
     
     ///ARDUINO
@@ -45,7 +45,7 @@ void templateScene::setup(){
 }
 
 //--------------------------------------------------------------
-void templateScene::update(){
+void scene0201::update(){
     if(angleInput==0){
         angle = ofMap(ofGetMouseY(), 0, scr.y, 0, TWO_PI);//mouse
     }
@@ -75,7 +75,7 @@ void templateScene::update(){
 }
 
 //--------------------------------------------------------------
-void templateScene::draw(){
+void scene0201::draw(){
     
     plane.drawX();
     plane.drawY();
@@ -102,7 +102,7 @@ void templateScene::draw(){
 }
 
 //--------------------------------------------------------------
-void templateScene::keyPressed(int key){
+void scene0201::keyPressed(int key){
     switch (key) {
         case '0':
             angleInput = 0;

@@ -49,7 +49,7 @@ void cartesianPlane::drawSine(){
     
     ofSetColor(255,0,0);
     ofSetLineWidth(3);
-    float length = ofMap(angle, -1, 1, circleRadius, -circleRadius);
+    float length = -sin(angle) * circleRadius;
     ofDrawLine(circleOrigin.x, circleOrigin.y , circleOrigin.x, circleOrigin.y + length); //main angle line
 
     
@@ -60,7 +60,7 @@ void cartesianPlane::drawCosine(){
     
     ofSetColor(0,0,255);
     ofSetLineWidth(3);
-    float length = ofMap(angle, -1, 1, circleRadius, -circleRadius);
+    float length = cos(angle) * circleRadius;
     ofDrawLine(circleOrigin.x, circleOrigin.y , circleOrigin.x + length, circleOrigin.y); //main angle line
 
     

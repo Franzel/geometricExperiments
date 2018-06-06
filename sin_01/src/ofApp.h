@@ -5,6 +5,9 @@
 #include "scene0101.h"
 #include "scene0102.h"
 #include "scene0103.h"
+#include "scene0201.h"
+
+#define NSCENES  4
 
 class ofApp : public ofBaseApp{
 
@@ -23,7 +26,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	
-		baseScene  * scenes[3];
+		baseScene  * scenes[NSCENES];
 		int currentScene;
 	
 		

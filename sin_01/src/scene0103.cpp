@@ -71,7 +71,7 @@ void scene0103::update(){
     cosineBar.update(cosine);
     sineBar.update(sine);
     mainCircle.update(angle);
-    plane.update(-cosine);
+    plane.update(angle);
     
 }
 
@@ -86,11 +86,11 @@ void scene0103::draw(){
     plane.drawCosine();
 
     
-   // mainCircle.drawSine();
-    mainCircle.drawCosine();
+//    mainCircle.drawSine();
+//    mainCircle.drawCosine();
     //mainCircle.draw();
     cosineBar.draw();
-    //sineBar.draw();
+    sineBar.draw();
     textBox.drawImage();
     
     //raw numeric info

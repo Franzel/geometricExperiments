@@ -71,7 +71,7 @@ void scene0101::update(){
     cosineBar.update(cosine);
     sineBar.update(sine);
     mainCircle.update(angle);
-    plane.update(sine);
+    plane.update(angle);
     
 }
 
