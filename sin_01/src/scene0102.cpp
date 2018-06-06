@@ -80,12 +80,15 @@ void scene0102::draw(){
     
     plane.drawY();
     plane.drawYGrid();
+    plane.drawX();
+    plane.drawXGrid();
     plane.drawCosine();
+    plane.drawYvalue();
     
    // mainCircle.drawSine();
 //    mainCircle.drawCosine();
     //mainCircle.draw();
-    cosineBar.draw();
+//    cosineBar.draw();
     //sineBar.draw();
     textBox.drawImage();
     

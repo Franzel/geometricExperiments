@@ -1,7 +1,7 @@
-#include "scene0201.h"
+#include "templateScene.h"
 
 //--------------------------------------------------------------
-void scene0201::setup(){
+void templateScene::setup(){
     
     scr.set(ofGetScreenWidth(), ofGetScreenHeight());
     ofSetWindowShape(scr.x, scr.y);
@@ -45,7 +45,7 @@ void scene0201::setup(){
 }
 
 //--------------------------------------------------------------
-void scene0201::update(){
+void templateScene::update(){
     if(angleInput==0){
         angle = ofMap(ofGetMouseY(), 0, scr.y, 0, TWO_PI);//mouse
     }
@@ -75,7 +75,7 @@ void scene0201::update(){
 }
 
 //--------------------------------------------------------------
-void scene0201::draw(){
+void templateScene::draw(){
     
     plane.drawX();
     plane.drawY();
@@ -102,7 +102,7 @@ void scene0201::draw(){
 }
 
 //--------------------------------------------------------------
-void scene0201::keyPressed(int key){
+void templateScene::keyPressed(int key){
     switch (key) {
         case '0':
             angleInput = 0;

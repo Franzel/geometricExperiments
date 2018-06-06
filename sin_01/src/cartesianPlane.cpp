@@ -70,27 +70,42 @@ void cartesianPlane::drawCosine(){
 void cartesianPlane::drawXGrid(){
     
     ofSetColor(c);
-    ofSetLineWidth(1);
+    ofSetLineWidth(2);
     float thickness = 10;
     ofDrawLine(circleOrigin.x-thickness, circleOrigin.y-circleRadius , circleOrigin.x + thickness, circleOrigin.y-circleRadius); //main angle line
     ofDrawLine(circleOrigin.x-thickness, circleOrigin.y+circleRadius , circleOrigin.x + thickness, circleOrigin.y+circleRadius); //main angle line
+    ofDrawLine(circleOrigin.x-thickness, circleOrigin.y , circleOrigin.x + thickness, circleOrigin.y); //main angle line
     ofDrawLine(circleOrigin.x-thickness, circleOrigin.y-circleRadius/2 , circleOrigin.x + thickness, circleOrigin.y-circleRadius/2); //main angle line
     ofDrawLine(circleOrigin.x-thickness, circleOrigin.y+circleRadius/2 , circleOrigin.x + thickness, circleOrigin.y+circleRadius/2); //main angle line
-    
+
 }
 
 void cartesianPlane::drawYGrid(){
     
     ofSetColor(c);
-    ofSetLineWidth(1);
+    ofSetLineWidth(2);
     float thickness = 10;
     ofDrawLine(circleOrigin.x-circleRadius, circleOrigin.y-thickness , circleOrigin.x-circleRadius, circleOrigin.y + thickness); //main angle line
     ofDrawLine(circleOrigin.x+circleRadius, circleOrigin.y-thickness , circleOrigin.x+circleRadius, circleOrigin.y + thickness); //main angle line
+    ofDrawLine(circleOrigin.x, circleOrigin.y-thickness , circleOrigin.x, circleOrigin.y + thickness); //main angle line
     ofDrawLine(circleOrigin.x-circleRadius/2, circleOrigin.y-thickness , circleOrigin.x-circleRadius/2, circleOrigin.y + thickness); //main angle line
     ofDrawLine(circleOrigin.x+circleRadius/2, circleOrigin.y-thickness , circleOrigin.x+circleRadius/2, circleOrigin.y + thickness); //main angle line
+    
+
 
     
 }
 
+void cartesianPlane::drawXvalue(){
+    float thickness = 10;
+    float length = sin(angle);
+    ofDrawBitmapString(ofToString(length,2), circleOrigin.x+thickness*2.5 , circleOrigin.y+circleRadius*length);
+}
+
+void cartesianPlane::drawYvalue(){
+    float thickness = 10;
+    float length = cos(angle);
+    ofDrawBitmapString(ofToString(length,2), circleOrigin.x+circleRadius*length, circleOrigin.y-thickness*2);
+}
 
 

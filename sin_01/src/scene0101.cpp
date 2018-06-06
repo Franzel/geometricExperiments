@@ -81,12 +81,13 @@ void scene0101::draw(){
     plane.drawX();
     plane.drawXGrid();
     plane.drawSine();
+    plane.drawXvalue();
     
     //mainCircle.drawSine();
 //    mainCircle.drawCosine();
 //    mainCircle.draw();
 //    cosineBar.draw();
-    sineBar.draw();
+//    sineBar.draw();
     textBox.drawImage();
     
     //raw numeric info

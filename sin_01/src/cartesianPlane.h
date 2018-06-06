@@ -26,6 +26,8 @@ public:
     void drawCosine();
     void drawXGrid();
     void drawYGrid();
+    void drawXvalue();
+    void drawYvalue();
     
     ofVec2f circleOrigin;
     float circleRadius;
