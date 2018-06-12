@@ -12,8 +12,8 @@ void scene0103::setup(){
     
     
     ///colors
-    sinColor = ofColor(ofColor::red);
-    cosColor = ofColor(ofColor::blue);
+    sinColor = ofColor::red;
+    cosColor = ofColor::blue;
     
     ///Circle
     ofSetCircleResolution(100);
@@ -78,19 +78,30 @@ void scene0103::update(){
 //--------------------------------------------------------------
 void scene0103::draw(){
     
+    plane.drawBgGrid();
     plane.drawX();
     plane.drawY();
-    plane.drawYGrid();
+//    plane.drawYGrid();
     plane.drawXGrid();
-    plane.drawSine();
+    plane.drawXinfo();
+//    plane.drawSine();
     plane.drawCosine();
-
+    plane.drawXvalue();
+    ofVec2f tempPos;
+    tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
+    
+//    mainCircle.drawAngleArc();
+//    mainCircle.displayAngle();
+    mainCircle.draw();
+//    mainCircle.drawDottedX();
+    mainCircle.drawDottedY();
+    mainCircle.drawAngleTip(tempPos, ofColor::blue);
     
 //    mainCircle.drawSine();
 //    mainCircle.drawCosine();
-    //mainCircle.draw();
-    cosineBar.draw();
-    sineBar.draw();
+
+//    cosineBar.draw();
+//    sineBar.draw();
     textBox.drawImage();
     
     //raw numeric info

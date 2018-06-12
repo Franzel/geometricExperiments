@@ -78,12 +78,17 @@ void scene0102::update(){
 //--------------------------------------------------------------
 void scene0102::draw(){
     
-    plane.drawY();
-    plane.drawYGrid();
+    plane.c = ofColor::gray;
     plane.drawX();
     plane.drawXGrid();
+    plane.drawXinfo();
+    plane.drawXvalue();
+    
+    plane.c = ofColor::lightGray;
+    plane.drawY();
+    plane.drawYGrid();
+    
     plane.drawCosine();
-    plane.drawYvalue();
     
    // mainCircle.drawSine();
 //    mainCircle.drawCosine();

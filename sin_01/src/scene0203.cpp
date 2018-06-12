@@ -1,7 +1,7 @@
-#include "scene0101.h"
+#include "scene0203.h"
 
 //--------------------------------------------------------------
-void scene0101::setup(){
+void scene0203::setup(){
     
     scr.set(ofGetScreenWidth(), ofGetScreenHeight());
     ofSetWindowShape(scr.x, scr.y);
@@ -28,11 +28,11 @@ void scene0101::setup(){
     cycleDuration = TWO_PI;
     
     ///measure Bars
-    sineBar.setup(ofVec2f(circleOrigin + ofVec2f(circleRadius+100,0)), circleRadius,10,-90, sinColor, " ");
+    sineBar.setup(ofVec2f(circleOrigin + ofVec2f(circleRadius+100,0)), circleRadius,10,-90, sinColor, "SIN");
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
     
     ///INFO
-    textBox.setup("info_01-01.png");
+    textBox.setup("info_02-01.png");
     bShowRawinfo = false;
     
     ///ARDUINO
@@ -45,7 +45,7 @@ void scene0101::setup(){
 }
 
 //--------------------------------------------------------------
-void scene0101::update(){
+void scene0203::update(){
     if(angleInput==0){
         angle = ofMap(ofGetMouseY(), 0, scr.y, 0, TWO_PI);//mouse
     }
@@ -76,37 +76,42 @@ void scene0101::update(){
 }
 
 //--------------------------------------------------------------
-void scene0101::draw(){
+void scene0203::draw(){
     
+    plane.drawX();
     plane.drawY();
+    plane.drawXGrid();
     plane.drawYGrid();
-    plane.drawYinfo();
-    plane.drawSine();
-    plane.drawYvalue();
     
-//    mainCircle.drawSine();
-//    mainCircle.drawCosine();
-//    mainCircle.draw();
-//    cosineBar.draw();
-//    sineBar.draw();
+    
+    mainCircle.drawSine();
+    mainCircle.drawDottedX();
+
+    sineBar.draw();
+    mainCircle.drawAngleArc();
+    mainCircle.draw();
+    ofVec2f tempPos;
+    tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
+    mainCircle.drawAngleTip(tempPos, ofColor(20));
+    mainCircle.displayAngle();
     textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){
-    ofSetColor(ofColor::black);
-    ofDrawBitmapString("ANGLE (deg) = " + ofToString(ofRadToDeg(angle),4), 100, 100);
-    ofDrawBitmapString("angle (rad) = " + ofToString(angle,4), 100, 120);
-    ofDrawBitmapString("sin         = " + ofToString(sin(angle),4), 100, 140);
-    ofDrawBitmapString("cos         = " + ofToString(cos(angle),4), 100, 160);
-    ofDrawBitmapString("Serial      = " + ofToString(arduino.byteData,4), 100, 180);
-    ofDrawBitmapString("angle input = " + angleInputName, 100, 200);
+        ofSetColor(ofColor::black);
+        ofDrawBitmapString("ANGLE (deg) = " + ofToString(ofRadToDeg(angle),4), 100, 100);
+        ofDrawBitmapString("angle (rad) = " + ofToString(angle,4), 100, 120);
+        ofDrawBitmapString("sin         = " + ofToString(sin(angle),4), 100, 140);
+        ofDrawBitmapString("cos         = " + ofToString(cos(angle),4), 100, 160);
+        ofDrawBitmapString("Serial      = " + ofToString(arduino.byteData,4), 100, 180);
+        ofDrawBitmapString("angle input = " + angleInputName, 100, 200);
     }
     
     
 }
 
 //--------------------------------------------------------------
-void scene0101::keyPressed(int key){
+void scene0203::keyPressed(int key){
     switch (key) {
         case '0':
             angleInput = 0;

@@ -6,7 +6,11 @@ void ofApp::setup(){
 	scenes[0] = new scene0101();
 	scenes[1] = new scene0102();
 	scenes[2] = new scene0103();
-    scenes[3] = new scene0201();
+    scenes[3] = new scene0104();
+    scenes[4] = new scene0201();
+    scenes[5] = new scene0202();
+    scenes[6] = new scene0203();
+    scenes[7] = new scene0204();
 	
 	currentScene = 0;
 	
@@ -41,12 +45,20 @@ void ofApp::keyPressed(int key){
 
     if(key==OF_KEY_LEFT){
         currentScene--;
-        currentScene %= NSCENES;
+        if(currentScene<0){
+            currentScene = NSCENES-1;
+        };
     }
 	((scene0101*)scenes[0])->keyPressed(key);
     ((scene0102*)scenes[1])->keyPressed(key);
     ((scene0103*)scenes[2])->keyPressed(key);
-    ((scene0201*)scenes[3])->keyPressed(key);
+    ((scene0104*)scenes[3])->keyPressed(key);
+    ((scene0201*)scenes[4])->keyPressed(key);
+    ((scene0202*)scenes[5])->keyPressed(key);
+    ((scene0203*)scenes[6])->keyPressed(key);
+    ((scene0204*)scenes[7])->keyPressed(key);
+
+
 
 	
 }

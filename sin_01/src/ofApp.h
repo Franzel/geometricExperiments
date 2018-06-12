@@ -5,9 +5,13 @@
 #include "scene0101.h"
 #include "scene0102.h"
 #include "scene0103.h"
+#include "scene0104.h"
 #include "scene0201.h"
+#include "scene0202.h"
+#include "scene0203.h"
+#include "scene0204.h"
 
-#define NSCENES  4
+#define NSCENES  8
 
 class ofApp : public ofBaseApp{
 
