@@ -10,6 +10,12 @@
 
 cartesianPlane::cartesianPlane(){
     c.set(ofColor::gray);
+    
+    float fontSize = 24;
+    valueText.load("GT-America-Mono-Medium.otf", fontSize/2, true, true);
+    valueText.setLineHeight(fontSize);
+    valueText.setLetterSpacing(1.0);
+
 }
 
 
@@ -138,14 +144,14 @@ void cartesianPlane::drawBgGrid(){
 void cartesianPlane::drawYvalue(){
     float thickness = 10;
     float length = sin(angle);
-    ofDrawBitmapString(ofToString(length,2), circleOrigin.x+thickness*2.5 , circleOrigin.y-circleRadius*length);
+    valueText.drawString(ofToString(length,2), circleOrigin.x+thickness*2.5 , circleOrigin.y-circleRadius*length);
 }
 
 void cartesianPlane::drawXvalue(){
     ofSetColor(0,0,255);
     float thickness = 10;
     float length = cos(angle);
-    ofDrawBitmapString(ofToString(length,2), circleOrigin.x+circleRadius*length, circleOrigin.y-thickness*2);
+    valueText.drawString(ofToString(length,2), circleOrigin.x+circleRadius*length, circleOrigin.y-thickness*2);
 }
 
 

@@ -38,6 +38,8 @@ public:
     float circleRadius;
     float angle;
     ofColor c;
+    
+    ofTrueTypeFont valueText;
 };
 
 

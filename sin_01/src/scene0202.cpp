@@ -32,7 +32,7 @@ void scene0202::setup(){
     cosineBar.setup(ofVec2f(circleOrigin + ofVec2f(0,circleRadius+100)), circleRadius,10,0, cosColor, "COS");
     
     ///INFO
-    textBox.setup("info_02-01.png");
+    textBox.setup("info_02-02.png");
     bShowRawinfo = false;
     
     ///ARDUINO
