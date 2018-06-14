@@ -17,6 +17,8 @@ void ofApp::setup(){
 	for (int i = 0; i < NSCENES; i++){
 		scenes[i]->setup();
 	}
+    
+    ofEnableAlphaBlending();
 	
 	
 }

@@ -47,9 +47,25 @@ void unitCircle::draw(){
     ofSetColor(0);
     ofDrawCircle(circleOrigin, circleRadius/64);
     
-    //drawAngleArc();
-    //drawAngleTip(angPos);
-    //displayAngle();
+    int nDivisions = 8;
+    for(int i=0; i<nDivisions; i++){
+        float theta = (TWO_PI / nDivisions) * i;
+        float x = circleOrigin.x + cos(theta) * circleRadius;
+        float y = circleOrigin.y + sin(theta) * circleRadius;
+        
+        ofVec2f tempPos;
+        tempPos.set(x, y);
+        
+        ofVec2f diff = tempPos - circleOrigin;
+        diff.normalize();
+        
+        diff*=6;
+        
+        ofSetLineWidth(1);
+        ofSetColor(ofColor::gray);
+        ofDrawLine(tempPos-diff, tempPos+diff);
+        
+    }
     
 }
 
