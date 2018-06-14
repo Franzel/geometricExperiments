@@ -54,15 +54,6 @@ void unitCircle::draw(){
 }
 
 void unitCircle::drawAngleTip(ofVec2f _pos, ofColor col, bool bDrawCos, bool bDrawSin){
-    //    float dx = _pos.x - circleOrigin.x;
-    //    float dy = _pos.y - circleOrigin.y;
-    //    ofPushMatrix();
-    //    ofTranslate(_pos.x, _pos.y);
-    //    ofRotateZ(ofRadToDeg(atan2(-dx, dy)));
-    //    float triangleSize= 5;
-    //    ofSetColor(100,0,100);
-    //    ofDrawTriangle(triangleSize,triangleSize,-triangleSize,triangleSize,0,-triangleSize*2);
-    //    ofPopMatrix();
     ofSetColor(col);
     ofDrawCircle(_pos,7.6);
     
@@ -79,7 +70,7 @@ void unitCircle::drawAngleArc(){
     ofPolyline curve;
     ofPolyline curve2;
     ofSetLineWidth(1);
-    ofSetColor(155,120,100,80);
+    ofSetColor(155,120,100,60);
 
     if(angle>0){
         curve.addVertex(circleOrigin);
@@ -109,7 +100,6 @@ void unitCircle::displayAngle(){
 
 void unitCircle::drawSine(){
     //sine line
-    ofDrawLine(circleOrigin, angPos ); //main angle line
     ofSetColor(ofColor::red);
     ofSetLineWidth(1.5);
     ofDrawLine(angPos.x,angPos.y, angPos.x, circleOrigin.y);

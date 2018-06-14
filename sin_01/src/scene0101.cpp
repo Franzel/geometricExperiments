@@ -84,12 +84,7 @@ void scene0101::draw(){
     plane.drawSine();
     plane.drawYvalue();
     
-//    mainCircle.drawSine();
-//    mainCircle.drawCosine();
-//    mainCircle.draw();
-//    cosineBar.draw();
-//    sineBar.draw();
-    textBox.drawImage();
+//    textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){

@@ -78,7 +78,6 @@ void scene0201::update(){
 //--------------------------------------------------------------
 void scene0201::draw(){
 
-    
     plane.drawXGrid();
     plane.drawYGrid();
 
@@ -94,7 +93,7 @@ void scene0201::draw(){
     mainCircle.drawAngleTip(tempPos, ofColor(20), false, false);
     mainCircle.displayAngle();
     
-    textBox.drawImage();
+//    textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){

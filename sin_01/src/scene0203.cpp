@@ -94,7 +94,7 @@ void scene0203::draw(){
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
     mainCircle.drawAngleTip(tempPos, ofColor(20), false, false);
     mainCircle.displayAngle();
-    textBox.drawImage();
+//    textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){

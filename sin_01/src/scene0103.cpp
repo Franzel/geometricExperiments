@@ -78,8 +78,6 @@ void scene0103::update(){
 //--------------------------------------------------------------
 void scene0103::draw(){
     
-    
-    
     plane.drawBgGrid();
     mainCircle.draw();
     
@@ -92,12 +90,10 @@ void scene0103::draw(){
     ofVec2f tempPos;
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
     
-
-    
     mainCircle.drawDottedY();
     mainCircle.drawAngleTip(tempPos, ofColor::blue, true, false);
 
-    textBox.drawImage();
+//    textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){

@@ -83,14 +83,9 @@ void scene0204::draw(){
     plane.drawXGrid();
     plane.drawYGrid();
    
-    
     mainCircle.drawSine();
     mainCircle.drawCosine();
-    
-//    mainCircle.drawDottedX();
-//    mainCircle.drawDottedY();
 
-    
     sineBar.draw();
     cosineBar.draw();
     
@@ -101,7 +96,7 @@ void scene0204::draw(){
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
     mainCircle.drawAngleTip(tempPos, ofColor(20),false, false);
     mainCircle.displayAngle();
-    textBox.drawImage();
+//    textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){

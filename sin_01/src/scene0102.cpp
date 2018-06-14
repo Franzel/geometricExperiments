@@ -91,7 +91,7 @@ void scene0102::draw(){
     
     plane.drawCosine();
 
-    textBox.drawImage();
+//    textBox.drawImage();
     
     //raw numeric info
     if(bShowRawinfo){
