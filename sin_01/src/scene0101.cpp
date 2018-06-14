@@ -80,7 +80,7 @@ void scene0101::draw(){
     
     plane.drawY();
     plane.drawYGrid();
-    plane.drawYinfo();
+    plane.drawYinfo(true,true);
     plane.drawSine();
     plane.drawYvalue();
     

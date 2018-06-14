@@ -35,12 +35,16 @@ void unitCircle::update(float _angle){
 
 void unitCircle::draw(){
     
-    ofSetColor(0);
+    ofSetColor(255,50);
+    ofDrawCircle(circleOrigin, circleRadius);
+
     ofNoFill();
+    ofSetColor(0);
     ofSetLineWidth(2);
     ofDrawCircle(circleOrigin, circleRadius);
     
     ofFill();
+    ofSetColor(0);
     ofDrawCircle(circleOrigin, circleRadius/64);
     
     //drawAngleArc();
@@ -49,7 +53,7 @@ void unitCircle::draw(){
     
 }
 
-void unitCircle::drawAngleTip(ofVec2f _pos, ofColor col){
+void unitCircle::drawAngleTip(ofVec2f _pos, ofColor col, bool bDrawCos, bool bDrawSin){
     //    float dx = _pos.x - circleOrigin.x;
     //    float dy = _pos.y - circleOrigin.y;
     //    ofPushMatrix();
@@ -61,6 +65,14 @@ void unitCircle::drawAngleTip(ofVec2f _pos, ofColor col){
     //    ofPopMatrix();
     ofSetColor(col);
     ofDrawCircle(_pos,7.6);
+    
+    if(bDrawCos){
+        ofDrawLine(circleOrigin.x, angPos.y, angPos.x, angPos.y);
+    }
+    
+    if(bDrawSin){
+        ofDrawLine(angPos.x, circleOrigin.y, angPos.x, angPos.y);
+    }
 }
 
 void unitCircle::drawAngleArc(){

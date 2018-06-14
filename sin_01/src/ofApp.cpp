@@ -8,8 +8,8 @@ void ofApp::setup(){
 	scenes[2] = new scene0103();
     scenes[3] = new scene0104();
     scenes[4] = new scene0201();
-    scenes[5] = new scene0202();
-    scenes[6] = new scene0203();
+    scenes[5] = new scene0203();
+    scenes[6] = new scene0202();
     scenes[7] = new scene0204();
 	
 	currentScene = 0;

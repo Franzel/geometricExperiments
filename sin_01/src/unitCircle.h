@@ -20,7 +20,7 @@ public:
     void setup(ofVec2f _ctr, float _radius);
     void update(float _angle);
     void draw();
-    void drawAngleTip(ofVec2f _pos, ofColor col);
+    void drawAngleTip(ofVec2f _pos, ofColor col, bool bDdrawCos, bool bDrawSin);
     void drawAngleArc();
     void displayAngle();
     void drawSine();

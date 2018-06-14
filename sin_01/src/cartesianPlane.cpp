@@ -15,6 +15,14 @@ cartesianPlane::cartesianPlane(){
     valueText.load("GT-America-Mono-Medium.otf", fontSize/2, true, true);
     valueText.setLineHeight(fontSize);
     valueText.setLetterSpacing(1.0);
+    
+    valueTextBig.load("GT-America-Mono-Medium.otf", fontSize * 0.6 , true, true);
+    valueTextBig.setLineHeight(fontSize);
+    valueTextBig.setLetterSpacing(1.0);
+    
+    valueTextSmall.load("GT-America-Mono-Medium.otf", fontSize/3, true, true);
+    valueTextSmall.setLineHeight(fontSize);
+    valueTextSmall.setLetterSpacing(1.0);
 
 }
 
@@ -68,32 +76,43 @@ void cartesianPlane::drawCosine(){
     ofDrawLine(circleOrigin.x, circleOrigin.y , circleOrigin.x + length, circleOrigin.y);
 }
 
-void cartesianPlane::drawXinfo(){
-    
-    ofSetColor(c);
+void cartesianPlane::drawXinfo(bool bTitle, bool bNumbers){
     float thickness = 10;
-    
-    ofDrawBitmapString("eje X", circleOrigin.x+circleRadius+thickness*2, circleOrigin.y);
-    ofDrawBitmapString("-1", circleOrigin.x-circleRadius-thickness, circleOrigin.y+thickness*3);
-    ofDrawBitmapString("1", circleOrigin.x+circleRadius+thickness/2, circleOrigin.y+thickness*3);
-    ofDrawBitmapString("0", circleOrigin.x-thickness, circleOrigin.y+thickness*3);
-    ofDrawBitmapString("-0.5", circleOrigin.x-circleRadius/2-thickness*2, circleOrigin.y+thickness*3);
-    ofDrawBitmapString("0.5", circleOrigin.x+circleRadius/2-thickness, circleOrigin.y+thickness*3);
+
+    if (bTitle) {
+        ofSetColor(0,0,255);
+        valueTextBig.drawString("EJE X", circleOrigin.x+circleRadius+thickness*2, circleOrigin.y+thickness/2);
+    }
+
+    if(bNumbers){
+        ofSetColor(c);
+        valueText.drawString("-1", circleOrigin.x-circleRadius-thickness*1.5, circleOrigin.y+thickness*3);
+        valueText.drawString("1", circleOrigin.x+circleRadius, circleOrigin.y+thickness*3);
+        valueText.drawString("0", circleOrigin.x-thickness, circleOrigin.y+thickness*3);
+        valueText.drawString("-0.5", circleOrigin.x-circleRadius/2-thickness*2.5, circleOrigin.y+thickness*3);
+        valueText.drawString("0.5", circleOrigin.x+circleRadius/2-thickness*1.5, circleOrigin.y+thickness*3);
+    }
+
 }
 
 
-void cartesianPlane::drawYinfo(){
-    
-    ofSetColor(c);
+void cartesianPlane::drawYinfo(bool bTitle, bool bNumbers){
     float thickness = 10;
     
-    ofDrawBitmapString("eje Y", circleOrigin.x-thickness*2, circleOrigin.y-circleRadius-thickness*2);
-    
-    ofDrawBitmapString("-1", circleOrigin.x-thickness*3, circleOrigin.y-circleRadius+thickness/2);
-    ofDrawBitmapString("1", circleOrigin.x-thickness*3, circleOrigin.y+circleRadius+thickness/2);
-    ofDrawBitmapString("0", circleOrigin.x-thickness*3, circleOrigin.y);
-    ofDrawBitmapString("-0.5", circleOrigin.x-thickness*4, circleOrigin.y-circleRadius/2);
-    ofDrawBitmapString("0.5", circleOrigin.x-thickness*4, circleOrigin.y+circleRadius/2);
+    if(bTitle){
+        ofSetColor(255,0,0);
+        valueTextBig.drawString("EJE Y", circleOrigin.x-thickness*3, circleOrigin.y-circleRadius-thickness*4);
+    }
+
+    if(bNumbers){
+        ofSetColor(c);
+        valueText.drawString("1", circleOrigin.x-thickness*2.5, circleOrigin.y-circleRadius+thickness/2);
+        valueText.drawString("-1", circleOrigin.x-thickness*3.5, circleOrigin.y+circleRadius+thickness/2);
+        valueText.drawString("0", circleOrigin.x-thickness*2.5, circleOrigin.y+thickness/2);
+        valueText.drawString("0.5", circleOrigin.x-thickness*4.5, circleOrigin.y-circleRadius/2+thickness/2);
+        valueText.drawString("-0.5", circleOrigin.x-thickness*6, circleOrigin.y+circleRadius/2+thickness/2);
+    }
+
 }
 
 void cartesianPlane::drawXGrid(){

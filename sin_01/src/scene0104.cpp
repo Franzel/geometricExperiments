@@ -82,7 +82,7 @@ void scene0104::draw(){
     plane.drawX();
     plane.drawY();
     plane.drawYGrid();
-    plane.drawYinfo();
+    plane.drawYinfo(true, true);
 //    plane.drawXGrid();
     plane.drawSine();
 //    plane.drawCosine();
@@ -95,7 +95,7 @@ void scene0104::draw(){
     mainCircle.draw();
     mainCircle.drawDottedX();
 //    mainCircle.drawDottedY();
-    mainCircle.drawAngleTip(tempPos,ofColor::red);
+    mainCircle.drawAngleTip(tempPos,ofColor::red, false, true);
     
 //    mainCircle.drawSine();
 //    mainCircle.drawCosine();

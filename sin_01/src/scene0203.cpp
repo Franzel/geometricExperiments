@@ -92,7 +92,7 @@ void scene0203::draw(){
     mainCircle.draw();
     ofVec2f tempPos;
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
-    mainCircle.drawAngleTip(tempPos, ofColor(20));
+    mainCircle.drawAngleTip(tempPos, ofColor(20), false, false);
     mainCircle.displayAngle();
     textBox.drawImage();
     

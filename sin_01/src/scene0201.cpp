@@ -77,26 +77,23 @@ void scene0201::update(){
 
 //--------------------------------------------------------------
 void scene0201::draw(){
+
     
+    plane.drawXGrid();
+    plane.drawYGrid();
+
     plane.drawX();
     plane.drawY();
-//    plane.drawYGrid();
-//    plane.drawXGrid();
-//    plane.drawSine();
-//    plane.drawCosine();
-
-    
-//    mainCircle.drawSine();
-//    mainCircle.drawCosine();
-
     mainCircle.draw();
+
     mainCircle.drawAngleArc();
-    mainCircle.displayAngle();
+    
     ofVec2f tempPos;
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
-    mainCircle.drawAngleTip(tempPos, ofColor(20));
-//    cosineBar.draw();
-//    sineBar.draw();
+    mainCircle.drawSine();
+    mainCircle.drawAngleTip(tempPos, ofColor(20), false, false);
+    mainCircle.displayAngle();
+    
     textBox.drawImage();
     
     //raw numeric info

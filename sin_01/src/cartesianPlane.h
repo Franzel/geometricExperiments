@@ -26,8 +26,8 @@ public:
     void drawCosine();
     void drawXGrid();
     void drawYGrid();
-    void drawXinfo();
-    void drawYinfo();
+    void drawXinfo(bool bTitle, bool bNumbers);
+    void drawYinfo(bool bTitle, bool bNumbers);
 
     
     void drawXvalue();
@@ -40,6 +40,8 @@ public:
     ofColor c;
     
     ofTrueTypeFont valueText;
+    ofTrueTypeFont valueTextBig;
+    ofTrueTypeFont valueTextSmall;
 };
 
 
