@@ -14,6 +14,11 @@ unitCircle::unitCircle(){
     font.load("GT-America-Mono-Medium.otf", fontSize, true, true);
     font.setLineHeight(fontSize);
     font.setLetterSpacing(1.0);
+
+    fontSmall.load("GT-America-Mono-Medium.otf", fontSize/2, true, true);
+    fontSmall.setLineHeight(fontSize);
+    fontSmall.setLetterSpacing(1.0);
+
     angPos.set(0,0);
     
 }
@@ -46,25 +51,65 @@ void unitCircle::draw(){
     ofFill();
     ofSetColor(0);
     ofDrawCircle(circleOrigin, circleRadius/64);
+}
+
+void unitCircle::draw(bool bGuides, bool bAngleText, int nDivisions){
     
-    int nDivisions = 8;
-    for(int i=0; i<nDivisions; i++){
-        float theta = (TWO_PI / nDivisions) * i;
-        float x = circleOrigin.x + cos(theta) * circleRadius;
-        float y = circleOrigin.y + sin(theta) * circleRadius;
-        
-        ofVec2f tempPos;
-        tempPos.set(x, y);
-        
-        ofVec2f diff = tempPos - circleOrigin;
-        diff.normalize();
-        
-        diff*=6;
-        
-        ofSetLineWidth(1);
-        ofSetColor(ofColor::gray);
-        ofDrawLine(tempPos-diff, tempPos+diff);
-        
+    ofSetColor(255,50);
+    ofDrawCircle(circleOrigin, circleRadius);
+    
+    ofNoFill();
+    ofSetColor(0);
+    ofSetLineWidth(2);
+    ofDrawCircle(circleOrigin, circleRadius);
+    
+    ofFill();
+    ofSetColor(0);
+    ofDrawCircle(circleOrigin, circleRadius/64);
+    
+    if(bGuides){
+        for(int i=0; i<nDivisions; i++){
+            float theta = (TWO_PI / nDivisions) * i;
+            float x = circleOrigin.x + cos(theta) * circleRadius;
+            float y = circleOrigin.y + sin(theta) * circleRadius;
+            
+            ofVec2f tempPos;
+            tempPos.set(x, y);
+            
+            ofVec2f diff = tempPos - circleOrigin;
+            diff.normalize();
+            
+            diff*=6;
+            
+            ofSetLineWidth(1);
+            ofSetColor(ofColor::gray);
+            ofDrawLine(tempPos-diff, tempPos+diff);
+        }
+    }
+    
+    if(bAngleText){
+        for(int i=0; i<nDivisions; i++){
+            float theta = (TWO_PI / nDivisions) * i;
+            float x = circleOrigin.x + cos(theta) * circleRadius;
+            float y = circleOrigin.y + -sin(theta) * circleRadius;
+            
+            ofVec2f tempPos;
+            tempPos.set(x, y);
+            
+            ofVec2f diff = tempPos - circleOrigin;
+            diff.normalize();
+            
+            
+            
+            ofSetLineWidth(1);
+            ofSetColor(ofColor::gray);
+            float fontWidth = fontSmall.getStringBoundingBox(ofToString(ofRadToDeg(theta)),0,0).getWidth();
+            float fontHeight = fontSmall.getStringBoundingBox(ofToString(ofRadToDeg(theta)),0,0).getHeight();
+            
+            diff*=10 + fontWidth;
+            
+            fontSmall.drawString(ofToString(ofRadToDeg(theta)), tempPos.x+diff.x , tempPos.y+diff.y);
+        }
     }
     
 }

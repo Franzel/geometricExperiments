@@ -85,7 +85,7 @@ void scene0202::draw(){
 
     mainCircle.drawDottedY();
     mainCircle.drawCosine();
-    mainCircle.draw();
+    mainCircle.draw(true,true,24);
     cosineBar.draw();
 
     mainCircle.drawAngleArc();

@@ -20,6 +20,7 @@ public:
     void setup(ofVec2f _ctr, float _radius);
     void update(float _angle);
     void draw();
+    void draw(bool bGuides, bool bAngleText, int nDivisions);
     void drawAngleTip(ofVec2f _pos, ofColor col, bool bDdrawCos, bool bDrawSin);
     void drawAngleArc();
     void displayAngle();
@@ -34,6 +35,8 @@ public:
     float angle;
     
     ofTrueTypeFont font;
+    ofTrueTypeFont fontSmall;
+
     ofVec2f angPos;
 
     

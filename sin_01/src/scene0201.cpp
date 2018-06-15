@@ -83,7 +83,7 @@ void scene0201::draw(){
 
     plane.drawX();
     plane.drawY();
-    mainCircle.draw();
+    mainCircle.draw(true, true, 8);
 
     mainCircle.drawAngleArc();
     
