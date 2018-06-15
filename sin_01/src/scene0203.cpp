@@ -89,7 +89,7 @@ void scene0203::draw(){
 
     sineBar.draw();
     mainCircle.drawAngleArc();
-    mainCircle.draw();
+    mainCircle.draw(true,true,24);
     ofVec2f tempPos;
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);
     mainCircle.drawAngleTip(tempPos, ofColor(20), false, false);

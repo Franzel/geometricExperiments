@@ -90,7 +90,7 @@ void scene0204::draw(){
     cosineBar.draw();
     
     mainCircle.drawAngleArc();
-    mainCircle.draw();
+    mainCircle.draw(true,true,24);
     
     ofVec2f tempPos;
     tempPos.set(circleOrigin.x + cosine*circleRadius, circleOrigin.y - sine*circleRadius);

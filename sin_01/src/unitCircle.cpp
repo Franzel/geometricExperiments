@@ -78,9 +78,9 @@ void unitCircle::draw(bool bGuides, bool bAngleText, int nDivisions){
             
             ofVec2f diff = tempPos - circleOrigin;
             diff.normalize();
-            
+
             diff*=6;
-            
+
             ofSetLineWidth(1);
             ofSetColor(ofColor::gray);
             ofDrawLine(tempPos-diff, tempPos+diff);
@@ -97,18 +97,20 @@ void unitCircle::draw(bool bGuides, bool bAngleText, int nDivisions){
             tempPos.set(x, y);
             
             ofVec2f diff = tempPos - circleOrigin;
-            diff.normalize();
-            
             
             
             ofSetLineWidth(1);
             ofSetColor(ofColor::gray);
-            float fontWidth = fontSmall.getStringBoundingBox(ofToString(ofRadToDeg(theta)),0,0).getWidth();
-            float fontHeight = fontSmall.getStringBoundingBox(ofToString(ofRadToDeg(theta)),0,0).getHeight();
+            ofRectangle textBox = fontSmall.getStringBoundingBox(ofToString(ofRadToDeg(theta)),0,0);
+            ofVec2f boxOrigin = textBox.getBottomLeft();
+            ofVec2f boxCenter = textBox.getCenter();
+            ofVec2f boxVector = boxOrigin - boxCenter;
             
-            diff*=10 + fontWidth;
-            
-            fontSmall.drawString(ofToString(ofRadToDeg(theta)), tempPos.x+diff.x , tempPos.y+diff.y);
+            diff.normalize();
+            diff *= 20;
+            diff+=boxVector;
+            fontSmall.drawString(ofToString(ofRadToDeg(theta)), tempPos.x +diff.x , tempPos.y+diff.y);
+        
         }
     }
     
