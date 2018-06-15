@@ -121,11 +121,18 @@ void cartesianPlane::drawXGrid(){
     ofSetLineWidth(2);
     float thickness = 10;
     
-    ofDrawLine(circleOrigin.x-circleRadius, circleOrigin.y-thickness , circleOrigin.x-circleRadius, circleOrigin.y + thickness);
-    ofDrawLine(circleOrigin.x+circleRadius, circleOrigin.y-thickness , circleOrigin.x+circleRadius, circleOrigin.y + thickness);
-    ofDrawLine(circleOrigin.x, circleOrigin.y-thickness , circleOrigin.x, circleOrigin.y + thickness);
-    ofDrawLine(circleOrigin.x-circleRadius/2, circleOrigin.y-thickness/2 , circleOrigin.x-circleRadius/2, circleOrigin.y + thickness/2);
-    ofDrawLine(circleOrigin.x+circleRadius/2, circleOrigin.y-thickness/2 , circleOrigin.x+circleRadius/2, circleOrigin.y + thickness/2);
+    ofVec2f negMax =ofVec2f(circleOrigin.x-circleRadius, circleOrigin.y);
+    ofVec2f posMax =ofVec2f(circleOrigin.x+circleRadius, circleOrigin.y);
+    ofVec2f perpendicular = ofVec2f(0,thickness/2);
+    float longitude = negMax.distance(circleOrigin);
+    ofVec2f quarter = ofVec2f(longitude/2,0);
+   
+    ofDrawLine(negMax,posMax);
+    ofDrawLine(negMax-perpendicular,negMax+perpendicular);
+    ofDrawLine(negMax + quarter-perpendicular,negMax+quarter+perpendicular);
+    ofDrawLine(posMax - quarter-perpendicular,posMax-quarter+perpendicular);
+    ofDrawLine(posMax-perpendicular,posMax+perpendicular);
+
 }
 
 void cartesianPlane::drawYGrid(){
