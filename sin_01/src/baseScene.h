@@ -13,7 +13,7 @@ class baseScene {
 
 	public: 
 	
-	virtual void setup(){};
+	virtual void setup(ofVec2f res, float rad){};
 	virtual void update(){};
 	virtual void draw(){};
 	

@@ -3,9 +3,19 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    
+    ofSetFullscreen(true);
+    
+    ofVec2f res;
+    res.set(ofGetScreenWidth(), ofGetScreenHeight());
+    ofSetWindowShape(res.x, res.y);
+    
+    float rad = 250;
+    
 	scenes[0] = new scene0101();
-	scenes[1] = new scene0102();
-	scenes[2] = new scene0103();
+    scenes[1] = new scene0102();
+    scenes[2] = new scene0103();
     scenes[3] = new scene0104();
     scenes[4] = new scene0201();
     scenes[5] = new scene0203();
@@ -13,14 +23,13 @@ void ofApp::setup(){
     scenes[7] = new scene0204();
 	
 	currentScene = 0;
-	
-	for (int i = 0; i < NSCENES; i++){
-		scenes[i]->setup();
-	}
+
+    for (int i = 0; i < NSCENES; i++){
+        scenes[i]->setup(res,rad);
+    }
     
     ofEnableAlphaBlending();
-	
-	
+
 }
 
 //--------------------------------------------------------------

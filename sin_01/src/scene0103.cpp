@@ -1,28 +1,24 @@
 #include "scene0103.h"
 
 //--------------------------------------------------------------
-void scene0103::setup(){
+void scene0103::setup(ofVec2f res, float rad){
     
-    scr.set(ofGetScreenWidth(), ofGetScreenHeight());
-    ofSetWindowShape(scr.x, scr.y);
-    ofSetFullscreen(true);
+    scr.set(res);
     scrCenter.set(scr/2);
-    
     ofSetBackgroundColor(255, 240, 230);
     
-    
     ///colors
-    sinColor = ofColor::red;
-    cosColor = ofColor::blue;
+    sinColor = ofColor(ofColor::red);
+    cosColor = ofColor(ofColor::blue);
     
     ///Circle
     ofSetCircleResolution(100);
     circleOrigin.set(scrCenter.x/3 *1.5, scrCenter.y);
-    circleRadius = scr.y/3;
+    circleRadius = rad;
     angle=0;
     
-    plane.setup(circleOrigin, scr.y/3, 1.0); //cartesian plane
-    mainCircle.setup(circleOrigin, scr.y/3); //circle setup
+    plane.setup(circleOrigin, circleRadius, 1.0); //cartesian plane
+    mainCircle.setup(circleOrigin, circleRadius); //circle setup
     
     lastCycleTime = ofGetElapsedTimef();
     cycleDuration = TWO_PI;

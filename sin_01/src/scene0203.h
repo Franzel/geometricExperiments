@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 #include "ofMain.h"
 #include "measureBar.h"
@@ -13,7 +13,7 @@
 class scene0203 : public baseScene{
 
 	public:
-		void setup();
+    void setup(ofVec2f res, float rad);
 		void update();
 		void draw();
 

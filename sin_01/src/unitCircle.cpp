@@ -107,7 +107,7 @@ void unitCircle::draw(bool bGuides, bool bAngleText, int nDivisions){
             ofVec2f boxVector = boxOrigin - boxCenter;
             
             diff.normalize();
-            diff *= 20;
+            diff *= -20;
             diff+=boxVector;
             fontSmall.drawString(ofToString(ofRadToDeg(theta)), tempPos.x +diff.x , tempPos.y+diff.y);
         
@@ -121,10 +121,12 @@ void unitCircle::drawAngleTip(ofVec2f _pos, ofColor col, bool bDrawCos, bool bDr
     ofDrawCircle(_pos,7.6);
     
     if(bDrawCos){
+        ofSetLineWidth(1.5);
         ofDrawLine(circleOrigin.x, angPos.y, angPos.x, angPos.y);
     }
     
     if(bDrawSin){
+        ofSetLineWidth(1.5);
         ofDrawLine(angPos.x, circleOrigin.y, angPos.x, angPos.y);
     }
 }
@@ -164,7 +166,7 @@ void unitCircle::displayAngle(){
 void unitCircle::drawSine(){
     //sine line
     ofSetColor(ofColor::red);
-    ofSetLineWidth(1.5);
+    ofSetLineWidth(3);
     ofDrawLine(angPos.x,angPos.y, angPos.x, circleOrigin.y);
     
 }
@@ -172,7 +174,7 @@ void unitCircle::drawSine(){
 void unitCircle::drawCosine(){
     //cosine line
     ofSetColor(ofColor::blue);
-    ofSetLineWidth(1.5);
+    ofSetLineWidth(3);
     ofDrawLine(circleOrigin.x, circleOrigin.y, angPos.x, circleOrigin.y);
     
 }
