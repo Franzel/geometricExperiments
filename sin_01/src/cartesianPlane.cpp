@@ -81,7 +81,7 @@ void cartesianPlane::drawXinfo(bool bTitle, bool bNumbers){
 
     if (bTitle) {
         ofSetColor(0,0,255);
-        valueTextBig.drawString("EJE X", circleOrigin.x+circleRadius+thickness*2, circleOrigin.y+thickness/2);
+        valueTextBig.drawString("EJE X", circleOrigin.x+circleRadius-thickness*15, circleOrigin.y+thickness*8);
     }
 
     if(bNumbers){
@@ -101,13 +101,13 @@ void cartesianPlane::drawYinfo(bool bTitle, bool bNumbers){
     
     if(bTitle){
         ofSetColor(255,0,0);
-        valueTextBig.drawString("EJE Y", circleOrigin.x-thickness*3, circleOrigin.y-circleRadius-thickness*4);
+        valueTextBig.drawString("EJE Y", circleOrigin.x-thickness*14, circleOrigin.y-circleRadius/2+thickness/2);
     }
 
     if(bNumbers){
         ofSetColor(c);
-        valueText.drawString("1", circleOrigin.x-thickness*2.5, circleOrigin.y-circleRadius+thickness/2);
-        valueText.drawString("-1", circleOrigin.x-thickness*3.5, circleOrigin.y+circleRadius+thickness/2);
+        valueText.drawString("1", circleOrigin.x-thickness*2.5, circleOrigin.y-circleRadius+thickness);
+        valueText.drawString("-1", circleOrigin.x-thickness*3.5, circleOrigin.y+circleRadius);
         valueText.drawString("0", circleOrigin.x-thickness*2.5, circleOrigin.y+thickness/2);
         valueText.drawString("0.5", circleOrigin.x-thickness*4.5, circleOrigin.y-circleRadius/2+thickness/2);
         valueText.drawString("-0.5", circleOrigin.x-thickness*6, circleOrigin.y+circleRadius/2+thickness/2);
@@ -128,6 +128,7 @@ void cartesianPlane::drawXGrid(){
     ofVec2f quarter = ofVec2f(longitude/2,0);
    
     ofDrawLine(negMax,posMax);
+    ofDrawLine(circleOrigin-perpendicular,circleOrigin+perpendicular);
     ofDrawLine(negMax-perpendicular,negMax+perpendicular);
     ofDrawLine(negMax + quarter-perpendicular,negMax+quarter+perpendicular);
     ofDrawLine(posMax - quarter-perpendicular,posMax-quarter+perpendicular);
@@ -141,11 +142,18 @@ void cartesianPlane::drawYGrid(){
     ofSetLineWidth(2);
     float thickness = 10;
     
-    ofDrawLine(circleOrigin.x-thickness, circleOrigin.y-circleRadius , circleOrigin.x + thickness, circleOrigin.y-circleRadius);
-    ofDrawLine(circleOrigin.x-thickness, circleOrigin.y+circleRadius , circleOrigin.x + thickness, circleOrigin.y+circleRadius);
-    ofDrawLine(circleOrigin.x-thickness, circleOrigin.y , circleOrigin.x + thickness, circleOrigin.y);
-    ofDrawLine(circleOrigin.x-thickness/2, circleOrigin.y-circleRadius/2 , circleOrigin.x + thickness/2, circleOrigin.y-circleRadius/2);
-    ofDrawLine(circleOrigin.x-thickness/2, circleOrigin.y+circleRadius/2 , circleOrigin.x + thickness/2, circleOrigin.y+circleRadius/2);
+    ofVec2f negMax =ofVec2f(circleOrigin.x, circleOrigin.y-circleRadius);
+    ofVec2f posMax =ofVec2f(circleOrigin.x, circleOrigin.y+circleRadius);
+    ofVec2f perpendicular = ofVec2f(thickness/2,0);
+    float longitude = negMax.distance(circleOrigin);
+    ofVec2f quarter = ofVec2f(0,longitude/2);
+    
+    ofDrawLine(negMax,posMax);
+    ofDrawLine(circleOrigin-perpendicular,circleOrigin+perpendicular);
+    ofDrawLine(negMax-perpendicular,negMax+perpendicular);
+    ofDrawLine(negMax + quarter-perpendicular,negMax+quarter+perpendicular);
+    ofDrawLine(posMax - quarter-perpendicular,posMax-quarter+perpendicular);
+    ofDrawLine(posMax-perpendicular,posMax+perpendicular);
 }
 
 void cartesianPlane::drawBgGrid(){
@@ -170,14 +178,14 @@ void cartesianPlane::drawBgGrid(){
 void cartesianPlane::drawYvalue(){
     float thickness = 10;
     float length = sin(angle);
-    valueText.drawString(ofToString(length,2), circleOrigin.x+thickness*2.5 , circleOrigin.y-circleRadius*length);
+    valueText.drawString(ofToString(length,2), circleOrigin.x+thickness*2.5 , circleOrigin.y-circleRadius*(length*0.9)+10);
 }
 
 void cartesianPlane::drawXvalue(){
     ofSetColor(0,0,255);
     float thickness = 10;
     float length = cos(angle);
-    valueText.drawString(ofToString(length,2), circleOrigin.x+circleRadius*length, circleOrigin.y-thickness*2);
+    valueText.drawString(ofToString(length,2), circleOrigin.x+circleRadius*(length*0.9)-20, circleOrigin.y-thickness*2);
 }
 
 
