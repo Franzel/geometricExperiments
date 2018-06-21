@@ -14,7 +14,7 @@ class scene0104 : public baseScene{
 
 	public:
     void setup(ofVec2f res, float rad);
-		void update();
+		void update(float ang);
 		void draw();
 
 		void keyPressed(int key);
@@ -52,21 +52,7 @@ class scene0104 : public baseScene{
     ///Fonts
     ofTrueTypeFont fontLight;
     textDisplay textBox;
-
-    
-    ///ARDUINO
-    arduinoReader arduino;
-    
-    int angleInput;
-    string angleInputName;
-    bool bShowRawinfo;
-    
-    float lastCycleTime;
-    float cycleDuration;
-    
-
-
-		
+	
 };
 
 

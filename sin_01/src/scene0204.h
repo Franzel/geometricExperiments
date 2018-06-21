@@ -14,7 +14,7 @@ class scene0204 : public baseScene{
 
 	public:
 		void setup(ofVec2f res, float rad);
-		void update();
+		void update(float ang);
 		void draw();
 
 		void keyPressed(int key);

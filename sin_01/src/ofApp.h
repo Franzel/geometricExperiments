@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "arduinoReader.hpp"
+
 #include "baseScene.h"
 #include "scene0101.h"
 #include "scene0102.h"
@@ -32,6 +34,24 @@ class ofApp : public ofBaseApp{
 	
 		baseScene  * scenes[NSCENES];
 		int currentScene;
+    
+    
+    ///ARDUINO
+    arduinoReader arduino;
+    
+    int angleInput;
+    string angleInputName;
+    bool bShowRawinfo;
+    
+    float lastCycleTime;
+    float cycleDuration;
+    
+    ///INPUT
+    float angle;
+    
+    ///SCREEN
+    ofVec2f res;
+
 	
 		
 };
