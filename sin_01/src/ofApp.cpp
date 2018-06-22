@@ -51,8 +51,6 @@ void ofApp::update(){
         angle = ofMap(ofGetMouseY(), 0, res.y, 0, TWO_PI);//mouse
     }
     else if(angleInput==1){
-        
-        
         float diffTime = ofGetElapsedTimef() - lastCycleTime;
         if (diffTime > cycleDuration){
             lastCycleTime = ofGetElapsedTimef();
@@ -66,9 +64,6 @@ void ofApp::update(){
     else {
         angle = ofMap(ofGetMouseY(), 0, res.y, 0, TWO_PI);//mouse
     }
-    
-    cout<<angle<<endl;
-    cout<<"input: "<<angleInput<<endl;
 
 	
 	scenes[currentScene]->update(angle);
@@ -79,12 +74,10 @@ void ofApp::update(){
 void ofApp::draw(){
 	
 	scenes[currentScene]->draw();
-    ofDrawBitmapString(ofToString(currentScene), 0, 10);
-    
-    
     //raw numeric info
     if(bShowRawinfo){
         ofSetColor(ofColor::black);
+        ofDrawBitmapString("scene       = " + ofToString(currentScene), 100, 80);
         ofDrawBitmapString("ANGLE (deg) = " + ofToString(ofRadToDeg(angle),4), 100, 100);
         ofDrawBitmapString("angle (rad) = " + ofToString(angle,4), 100, 120);
         ofDrawBitmapString("sin         = " + ofToString(sin(angle),4), 100, 140);
@@ -97,25 +90,15 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-//    if(key==OF_KEY_RIGHT){
-//	currentScene++;
-//        currentScene %= NSCENES;
-//    }
-//
-//    if(key==OF_KEY_LEFT){
-//        currentScene--;
-//        if(currentScene<0){
-//            currentScene = NSCENES-1;
-//        };
-//    }
-	((scene0101*)scenes[0])->keyPressed(key);
-    ((scene0102*)scenes[1])->keyPressed(key);
-    ((scene0103*)scenes[2])->keyPressed(key);
-    ((scene0104*)scenes[3])->keyPressed(key);
-    ((scene0201*)scenes[4])->keyPressed(key);
-    ((scene0202*)scenes[5])->keyPressed(key);
-    ((scene0203*)scenes[6])->keyPressed(key);
-    ((scene0204*)scenes[7])->keyPressed(key);
+
+//	((scene0101*)scenes[0])->keyPressed(key);
+//    ((scene0102*)scenes[1])->keyPressed(key);
+//    ((scene0103*)scenes[2])->keyPressed(key);
+//    ((scene0104*)scenes[3])->keyPressed(key);
+//    ((scene0201*)scenes[4])->keyPressed(key);
+//    ((scene0202*)scenes[5])->keyPressed(key);
+//    ((scene0203*)scenes[6])->keyPressed(key);
+//    ((scene0204*)scenes[7])->keyPressed(key);
 
     switch (key) {
         case '0':

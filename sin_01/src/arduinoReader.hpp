@@ -25,6 +25,10 @@ public:
     string msg;
     int byteData;
     
+    vector<unsigned char> buffer;
+    int value;
+
+    
 };
 
 #endif /* arduinoReader_hpp */
