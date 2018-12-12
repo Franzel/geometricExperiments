@@ -37,8 +37,8 @@ class ofApp : public ofBaseApp{
     ofVec2f res;
     
     ofxPanel gui;
-    ofParameter<float> radX;
-    ofParameter<float> radY;
+    ofParameter<float> posX;
+    ofParameter<float> posY;
     ofParameter<float> freqParam;
     ofParameter<float> ampParam;
     ofParameter<float> waveSpeed;
@@ -57,6 +57,8 @@ class ofApp : public ofBaseApp{
     ofTrueTypeFont      cooper;
     bool                bSnapshot;
     float               phase;
+    
+    ofFbo fbo;
     
 
 		

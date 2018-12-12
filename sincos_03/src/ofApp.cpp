@@ -5,8 +5,8 @@ void ofApp::setup(){
     ofSetWindowPosition(0, 0);
     ///---- GUI
     gui.setup();
-    gui.add(radX.set("RAD_X", 200.0, 0.0, 900));
-    gui.add(radY.set("RAD_Y", 200.0, 0.0, 900.0));
+    gui.add(posX.set("RAD_X", 0, 0.0, 1080));
+    gui.add(posY.set("RAD_Y", 0, 0.0, 1080));
     gui.add(freqParam.set("FREQ",2.00,-5.00,5.00));
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
     gui.add(waveSpeed.set("WAVE_SPEED",1.0,-5.0,5.0));
@@ -18,7 +18,8 @@ void ofApp::setup(){
     ///---- INITIALIZE
     
     ofSetCircleResolution(60);
-    ofSetBackgroundColor(0);
+//    ofSetBackgroundColor(0);
+    ofBackground(0, 0, 0);
     res.set(ofGetWindowWidth(), ofGetWindowHeight());
     origin.set(0,0);
     radius = 100;
@@ -40,10 +41,27 @@ void ofApp::setup(){
     
     bMouse = true;
     cout<<positions.size()<<endl;
+    
+    fbo.allocate(1080,1080, GL_RGBA);
+//    fbo.begin();
+//    ofClear(255,255,255,0);
+//    fbo.end();
+    
 }
 
 //-------------------------------------------------------------
 void ofApp::update(){
+    
+    ofEnableAlphaBlending();
+//    fbo.begin();
+//    ofClear(255,255,255, 0);
+//    ofDrawRectangle(origin, 100, 100);
+//    fbo.end();
+    
+    
+    
+    origin.set(posX, posY);
+    
     for(int i=0;i<nRows;i++){
         for(int j=0;j<nCols;j++){
             //            float tempAngle = (TWO_PI / positions.size()) * i;
@@ -52,14 +70,7 @@ void ofApp::update(){
             positions[j*nRows+i].set(origin.x+i*gap, origin.y+j*gap);
         }
     }
-}
-
-//--------------------------------------------------------------
-void ofApp::draw(){
-    ofBackgroundGradient(ofColor(0), ofColor(0,40,50), OF_GRADIENT_CIRCULAR);
-    ofSetWindowTitle(ofToString(ofGetFrameRate()));
-    
-    
+ 
     float cycle = 1+sin(ofGetElapsedTimef()*freqParam)/2;
     int nIter = nDivisions;
     
@@ -75,38 +86,104 @@ void ofApp::draw(){
     //    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()*freqParam) * radY;
     
     
-    
+    fbo.begin();
+    ofClear(255, 255, 255,0);
     for (int i=0;i<nIter;i++){
         for (int j=0;j<positions.size();j++){
             ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
             diff.normalize();
             
             float distToCenter = positions[j].distance(center);
-//            ofVec3f r = positions[j] + diff*j* ((sin(ofGetElapsedTimef()+distToCenter)+1/2)*diff*ampParam)/gap;
+            //            ofVec3f r = positions[j] + diff*j* ((sin(ofGetElapsedTimef()+distToCenter)+1/2)*diff*ampParam)/gap;
             ofVec3f r = positions[j];
             r.z += sin(freqParam*ofGetElapsedTimef()*waveSpeed+distToCenter/50)*ampParam*20;
             
             ofColor c;
-            c.setHsb(i*(distToCenter*cycle)/nIter, 255, 600-distToCenter);
+            //            c.setHsb(i*(distToCenter*cycle)/nIter, 255, 600-distToCenter);
+            c.setHsb(i*(distToCenter*cycle)/nIter, 0, i*(distToCenter*cycle)/nIter);
             ofSetColor(c);
             ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
             
         }
     }
     
+    
+    fbo.end();
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    //ofBackgroundGradient(ofColor(0), ofColor(0,40,50), OF_GRADIENT_CIRCULAR);
+    ofSetWindowTitle(ofToString(ofGetFrameRate()));
+    
+    
+//    float cycle = 1+sin(ofGetElapsedTimef()*freqParam)/2;
+//    int nIter = nDivisions;
+//
+//    ofVec2f center;
+//
+//    if(bMouse){
+//        center.set(mouseX,mouseY);
+//    }else{
+//        center.x = ofGetWindowWidth()/2;
+//        center.y = ofGetWindowHeight()/2;
+//    }
+//    //    center.x = ofGetWindowWidth()/2 + cos(ofGetElapsedTimef()*freqParam) * radX;
+//    //    center.y = ofGetWindowHeight()/2 + sin(ofGetElapsedTimef()*freqParam) * radY;
+//
+//
+//
+//    for (int i=0;i<nIter;i++){
+//        for (int j=0;j<positions.size();j++){
+//            ofVec2f diff = positions[j]-center;//ofVec2f(mouseX,mouseY) ;
+//            diff.normalize();
+//
+//            float distToCenter = positions[j].distance(center);
+////            ofVec3f r = positions[j] + diff*j* ((sin(ofGetElapsedTimef()+distToCenter)+1/2)*diff*ampParam)/gap;
+//            ofVec3f r = positions[j];
+//            r.z += sin(freqParam*ofGetElapsedTimef()*waveSpeed+distToCenter/50)*ampParam*20;
+//
+//            ofColor c;
+////            c.setHsb(i*(distToCenter*cycle)/nIter, 255, 600-distToCenter);
+//            c.setHsb(i*(distToCenter*cycle)/nIter, 0, i*(distToCenter*cycle)/nIter);
+//            ofSetColor(c);
+//            ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
+//
+//        }
+//    }
+    
     //    ofDrawCircle(center, 10);
+//    ///CAPTURE
+//    if (bSnapshot == true){
+//        // grab a rectangle at 200,200, width and height of 300,180
+//        img.grabScreen(0,0, res.x, res.y);
+//
+//        string fileName = "snapshot_"+ofToString(10000+snapCounter)+".png";
+//        img.save(fileName, OF_IMAGE_QUALITY_BEST);
+//        snapString = "saved " + fileName;
+//        snapCounter++;
+//        bSnapshot = false;
+//    }
+
+    ///FBO
+    fbo.draw(0,0);
+    
     ///CAPTURE
     if (bSnapshot == true){
-        // grab a rectangle at 200,200, width and height of 300,180
+        // grab a rectangle
         img.grabScreen(0,0, res.x, res.y);
         
+        ofPixels pix;
+        fbo.readToPixels(pix);
+        
         string fileName = "snapshot_"+ofToString(10000+snapCounter)+".png";
-        img.save(fileName, OF_IMAGE_QUALITY_BEST);
+        ofSaveImage(pix, fileName, OF_IMAGE_QUALITY_BEST);
+        
+        //img.save(fileName, OF_IMAGE_QUALITY_BEST);
         snapString = "saved " + fileName;
         snapCounter++;
         bSnapshot = false;
     }
-    
     ///GUI
     gui.draw();
     
@@ -127,9 +204,6 @@ void ofApp::keyPressed(int key){
     
     switch (key) {
         case 's':
-            bSave=true;
-            break;
-        case 'm':
             bSnapshot=!bSnapshot;
             break;
             
@@ -139,7 +213,7 @@ void ofApp::keyPressed(int key){
                 cout<< i << " : " << positions[i]<<endl ;
             }
             break;
-        case 'l':
+        case 'm':
             bMouse=!bMouse;
             break;
             

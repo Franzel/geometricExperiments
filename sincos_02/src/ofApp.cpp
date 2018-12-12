@@ -54,29 +54,49 @@ void ofApp::draw(){
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
 
     ///RINGS
-    ofSetPolyMode(OF_POLY_WINDING_NONZERO);
-    ofNoFill();
+    //ofSetPolyMode(OF_POLY_WINDING_NONZERO);
+    //ofNoFill();
     for(int j=0;j<nRings;j++){
         ofColor c;
 
-        ofSetLineWidth(thickness*j);
+        ofSetLineWidth(3 +thickness*j);
 
-        ofBeginShape();
+//        ofBeginShape();
+//        for(int i=0;i<positions.size();i++){
+//            ofVec2f diff = positions[i]-origin ;
+//            diff.normalize();
+//            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
+//            ofVertex(r.x, r.y);
+//
+//        }
+//
+//        ofVec2f currRadius = positions[0] - origin;
+//        currRadius.normalize();
+//
+//
+//        c.setHsb((currRadius.x*15*j), 255, 255);
+//        ofSetColor(c);
+//        ofEndShape();
+        
+        ofPolyline line;
         for(int i=0;i<positions.size();i++){
             ofVec2f diff = positions[i]-origin ;
             diff.normalize();
             ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
-            ofVertex(r.x, r.y);
-
+            line.addVertex(r.x, r.y, 0);
+            
+  
         }
-
-        ofVec2f currRadius = positions[0] - origin;
-        currRadius.normalize();
-
-
-        c.setHsb((currRadius.x*15*j), 255, 255);
-        ofSetColor(c);
-        ofEndShape();
+        line.close();
+        line.draw();
+        
+        for(int i=0;i<positions.size();i++){
+            ofVec2f diff = positions[i]-origin ;
+            diff.normalize();
+            ofVec2f r = positions[i] + diff*j*gap*(gap+sin(ofGetElapsedTimef()*0.35)*(radX*0.01));
+            ofDrawCircle(r.x , r.y, thickness*0.5*j);
+        }
+        
 
 
     }
