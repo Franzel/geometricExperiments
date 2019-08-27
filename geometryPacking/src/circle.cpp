@@ -19,7 +19,7 @@ void circle::setup(float _x, float _y){
     y = _y;
     r = 1;
     minRadius = 1;
-    maxRadius = 30;
+    maxRadius = 100;
     col.setHsb(0, 0, 360);
 }
 

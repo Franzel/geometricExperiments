@@ -11,7 +11,7 @@ void ofApp::setup(){
     gui.add(ampParam.set("AMP",2.0,-30.0,30.0));
     gui.add(waveSpeed.set("WAVE_SPEED",1.0,-5.0,5.0));
     gui.add(gap.set("GAP",30,-10,400));
-    gui.add(thickness.set("THICKNESS",5,0.0,55.00));
+    gui.add(thickness.set("THICKNESS",50,0.0,55.00));
     gui.add(nDivisions.set("N_DIVISIONS",44,1,87));
     gui.loadFromFile("settings.xml");
     
@@ -19,6 +19,7 @@ void ofApp::setup(){
     
     ofSetCircleResolution(60);
     ofSetBackgroundColor(0);
+    ofSetFrameRate(15);
     res.set(ofGetWindowWidth(), ofGetWindowHeight());
     origin.set(0,0);
     radius = 100;
@@ -38,7 +39,7 @@ void ofApp::setup(){
         }
     }
     
-    bMouse = true;
+    bMouse = false;
     cout<<positions.size()<<endl;
 }
 
@@ -87,7 +88,7 @@ void ofApp::draw(){
             r.z += sin(freqParam*ofGetElapsedTimef()*waveSpeed+distToCenter/50)*ampParam*20;
             
             ofColor c;
-            c.setHsb(i*(distToCenter*cycle)/nIter, 255, 600-distToCenter);
+            c.setHsb(i*(distToCenter*cycle)/nIter, 0, i*10+cycle);
             ofSetColor(c);
             ofDrawCircle(r + (ampParam*cycle)*diff*i, thickness-i*thickness/nIter);
             
@@ -139,7 +140,7 @@ void ofApp::keyPressed(int key){
                 cout<< i << " : " << positions[i]<<endl ;
             }
             break;
-        case 'l':
+        case 'c':
             bMouse=!bMouse;
             break;
             
